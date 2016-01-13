@@ -7,9 +7,35 @@
     <script src="https://aframe.io/releases/latest/aframe.min.js"></script>
   </head>
   <body>
+    <a-assets>
+      <a-mixin id="wall" geometry="primitive: plane; height: 4; width: 4"></a-mixin>
+      <a-mixin id="top" rotation="90 0 0" material="color: #7e7e7e"></a-mixin>
+      <a-mixin id="bottom" rotation="-90 0 0" material="color: #614126"></a-mixin>
+      <a-mixin id="right" rotation="0 -90 0" material="color: #bdbdbd"></a-mixin>
+      <a-mixin id="left" rotation="0 90 0" material="color: #bdbdbd"></a-mixin>
+      <a-mixin id="back" rotation="0 0 0" material="color: #323232"></a-mixin>
+      <a-mixin id="front" rotation="180 0 0" material="color: #323232"></a-mixin>
+    </a-assets>
     <a-scene>
-      <a-plane rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-      <a-plane rotation="0 0 0" width="4" height="4" position="0 2 -2"></a-plane>
+      <!-- Room far -->
+      <a-entity mixin="wall bottom" position="0 0 0"></a-entity>
+      <a-entity mixin="wall back" position="0 2 -2"></a-entity>
+      <a-entity mixin="wall right" position="2 2 0"></a-entity>
+      <a-entity mixin="wall left" position="-2 2 0"></a-entity>
+      <a-entity mixin="wall top" position="0 4 0"></a-entity>
+
+      <!-- Room middle -->
+      <a-entity mixin="wall bottom" position="0 0 4"></a-entity>
+      <a-entity mixin="wall top" position="0 4 4"></a-entity>
+      <a-entity mixin="wall right" position="2 2 4"></a-entity>
+      <a-entity mixin="wall left" position="-2 2 4"></a-entity>
+
+      <!-- Room near -->
+      <a-entity mixin="wall bottom" position="0 0 8"></a-entity>
+      <a-entity mixin="wall top" position="0 4 8"></a-entity>
+      <a-entity mixin="wall right" position="2 2 8"></a-entity>
+      <a-entity mixin="wall left" position="-2 2 8"></a-entity>
+      <a-entity mixin="wall front" position="0 2 10"></a-entity>
 
       <a-sky color="#ECECEC"></a-sky>
     </a-scene>
