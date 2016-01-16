@@ -2,9 +2,12 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Hello, World! • A-Frame</title>
-    <meta name="description" content="Hello, World! • A-Frame">
-    <script src="https://aframe.io/releases/latest/aframe.min.js"></script>
+    <title>Cardboard Dungeon</title>
+    <meta name="description" content="Cardboard Dungeon">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="js/aframe.js"></script>
+    <script src="js/jquery-2.2.0.min.js"></script>
+    <script src="js/app.js"></script>
   </head>
   <body>
     <a-assets>
@@ -15,27 +18,19 @@
       <a-mixin id="left" rotation="0 90 0" material="color: #bdbdbd"></a-mixin>
       <a-mixin id="back" rotation="0 0 0" material="color: #323232"></a-mixin>
       <a-mixin id="front" rotation="180 0 0" material="color: #323232"></a-mixin>
+      <a-mixin id="move" geometry="primitive: plane; height: 1; width: 1" material="color: #FFFFFF" rotation="-90 0 0"></a-mixin>
     </a-assets>
     <a-scene>
-      <!-- Room far -->
-      <a-entity mixin="wall bottom" position="0 0 0"></a-entity>
-      <a-entity mixin="wall back" position="0 2 -2"></a-entity>
-      <a-entity mixin="wall right" position="2 2 0"></a-entity>
-      <a-entity mixin="wall left" position="-2 2 0"></a-entity>
-      <a-entity mixin="wall top" position="0 4 0"></a-entity>
+      <a-camera fov="80" position="0 1.8 4" near="0.2" cursor-color="#33CCFF"></a-camera>
+      
+      <a-entity id="room-far">
+      </a-entity>
 
-      <!-- Room middle -->
-      <a-entity mixin="wall bottom" position="0 0 4"></a-entity>
-      <a-entity mixin="wall top" position="0 4 4"></a-entity>
-      <a-entity mixin="wall right" position="2 2 4"></a-entity>
-      <a-entity mixin="wall left" position="-2 2 4"></a-entity>
+      <a-entity id="room-middle">
+      </a-entity>
 
-      <!-- Room near -->
-      <a-entity mixin="wall bottom" position="0 0 8"></a-entity>
-      <a-entity mixin="wall top" position="0 4 8"></a-entity>
-      <a-entity mixin="wall right" position="2 2 8"></a-entity>
-      <a-entity mixin="wall left" position="-2 2 8"></a-entity>
-      <a-entity mixin="wall front" position="0 2 10"></a-entity>
+      <a-entity id="room-near">
+      </a-entity>
 
       <a-sky color="#ECECEC"></a-sky>
     </a-scene>
