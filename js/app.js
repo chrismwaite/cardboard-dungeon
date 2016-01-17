@@ -6,20 +6,21 @@ $(document).ready(function() {
     //load data from map
     loadMapData();
 
-    //create containers and starting rooms
-    containers['north-north'] = new Container('#north-north','{"x":0,"y":0,"z":-4}',new Room(map['0,2'].data),'0,2');
-    containers['north-west'] = new Container('#north-west','{"x":-4,"y":0,"z":0}',null, '-1,1');
-    containers['north'] = new Container('#north','{"x":0,"y":0,"z":0}',new Room(map['0,1'].data),'0,1');
-    containers['north-east'] = new Container('#north-east','{"x":4,"y":0,"z":0}',null,'1,1');
-    containers['west-west'] = new Container('#west-west','{"x":-8,"y":0,"z":4}',null,'-2,0');
-    containers['west'] = new Container('#west','{"x":-4,"y":0,"z":4}',new Room(map['-1,0'].data),'-1,0');
-    containers['center'] = new Container('#center','{"x":0,"y":0,"z":4}',new Room(map['0,0'].data),'0,0');
-    containers['east'] = new Container('#east','{"x":4,"y":0,"z":4}',new Room(map['1,0'].data),'1,0');
-    containers['east-east'] = new Container('#east-east','{"x":8,"y":0,"z":4}',null,'2,0');
-    containers['south-west'] = new Container('#south-west','{"x":-4,"y":0,"z":8}',null,'-1,-1');
-    containers['south'] = new Container('#south','{"x":0,"y":0,"z":8}',new Room(map['0,-1'].data),'0,-1');
-    containers['south-east'] = new Container('#south-east','{"x":4,"y":0,"z":8}',null,'1,-1');
-    containers['south-south'] = new Container('#south-south','{"x":0,"y":0,"z":12}',new Room(map['0,-2'].data),'0,-2');
+    //create containers and load the starting rooms
+    //0,0 is currently the starting point regardless of the map
+    containers['north-north'] = new Container('#north-north','{"x":0,"y":0,"z":-4}',(map['0,2'] ? new Room(map['0,2'].data) : null),'0,2');
+    containers['north-west'] = new Container('#north-west','{"x":-4,"y":0,"z":0}',(map['-1,1'] ? new Room(map['-1,1'].data) : null), '-1,1');
+    containers['north'] = new Container('#north','{"x":0,"y":0,"z":0}',(map['0,1'] ? new Room(map['0,1'].data) : null),'0,1');
+    containers['north-east'] = new Container('#north-east','{"x":4,"y":0,"z":0}',(map['1,1'] ? new Room(map['1,1'].data) : null),'1,1');
+    containers['west-west'] = new Container('#west-west','{"x":-8,"y":0,"z":4}',(map['-2,0'] ? new Room(map['-2,0'].data) : null),'-2,0');
+    containers['west'] = new Container('#west','{"x":-4,"y":0,"z":4}',(map['-1,0'] ? new Room(map['-1,0'].data) : null),'-1,0');
+    containers['center'] = new Container('#center','{"x":0,"y":0,"z":4}',(map['0,0'] ? new Room(map['0,0'].data) : null),'0,0');
+    containers['east'] = new Container('#east','{"x":4,"y":0,"z":4}',(map['1,0'] ? new Room(map['1,0'].data) : null),'1,0');
+    containers['east-east'] = new Container('#east-east','{"x":8,"y":0,"z":4}',(map['2,0'] ? new Room(map['2,0'].data) : null),'2,0');
+    containers['south-west'] = new Container('#south-west','{"x":-4,"y":0,"z":8}',(map['-1,-1'] ? new Room(map['-1,-1'].data) : null),'-1,-1');
+    containers['south'] = new Container('#south','{"x":0,"y":0,"z":8}',(map['0,-1'] ? new Room(map['0,-1'].data) : null),'0,-1');
+    containers['south-east'] = new Container('#south-east','{"x":4,"y":0,"z":8}',(map['1,-1'] ? new Room(map['1,-1'].data) : null),'1,-1');
+    containers['south-south'] = new Container('#south-south','{"x":0,"y":0,"z":12}',(map['0,-2'] ? new Room(map['0,-2'].data) : null),'0,-2');
     
     //render the room data for the containers
     for (var key in containers) {
