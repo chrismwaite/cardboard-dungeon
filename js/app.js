@@ -7,15 +7,19 @@ $(document).ready(function() {
     loadMapData();
 
     //create containers and starting rooms
-    containers['room-far-left'] = new Container('#room-far-left','{"x":-4,"y":0,"z":0}',null, '-1,1');
-    containers['room-far'] = new Container('#room-far','{"x":0,"y":0,"z":0}',new Room(map['0,1'].data),'0,1');
-    containers['room-far-right'] = new Container('#room-far-right','{"x":4,"y":0,"z":0}',null,'1,1');
-    containers['room-middle-left'] = new Container('#room-middle-left','{"x":-4,"y":0,"z":4}',new Room(map['-1,0'].data),'-1,0');
-    containers['room-middle'] = new Container('#room-middle','{"x":0,"y":0,"z":4}',new Room(map['0,0'].data),'0,0');
-    containers['room-middle-right'] = new Container('#room-middle-right','{"x":4,"y":0,"z":4}',new Room(map['1,0'].data),'1,0');
-    containers['room-near-left'] = new Container('#room-near-left','{"x":-4,"y":0,"z":8}',null,'-1,-1');
-    containers['room-near'] = new Container('#room-near','{"x":0,"y":0,"z":8}',new Room(map['0,-1'].data),'0,-1');
-    containers['room-near-right'] = new Container('#room-near-right','{"x":4,"y":0,"z":8}',null,'1,-1');
+    containers['north-north'] = new Container('#north-north','{"x":0,"y":0,"z":-4}',new Room(map['0,2'].data),'0,2');
+    containers['north-west'] = new Container('#north-west','{"x":-4,"y":0,"z":0}',null, '-1,1');
+    containers['north'] = new Container('#north','{"x":0,"y":0,"z":0}',new Room(map['0,1'].data),'0,1');
+    containers['north-east'] = new Container('#north-east','{"x":4,"y":0,"z":0}',null,'1,1');
+    containers['west-west'] = new Container('#west-west','{"x":-8,"y":0,"z":4}',null,'-2,0');
+    containers['west'] = new Container('#west','{"x":-4,"y":0,"z":4}',new Room(map['-1,0'].data),'-1,0');
+    containers['center'] = new Container('#center','{"x":0,"y":0,"z":4}',new Room(map['0,0'].data),'0,0');
+    containers['east'] = new Container('#east','{"x":4,"y":0,"z":4}',new Room(map['1,0'].data),'1,0');
+    containers['east-east'] = new Container('#east-east','{"x":8,"y":0,"z":4}',null,'2,0');
+    containers['south-west'] = new Container('#south-west','{"x":-4,"y":0,"z":8}',null,'-1,-1');
+    containers['south'] = new Container('#south','{"x":0,"y":0,"z":8}',new Room(map['0,-1'].data),'0,-1');
+    containers['south-east'] = new Container('#south-east','{"x":4,"y":0,"z":8}',null,'1,-1');
+    containers['south-south'] = new Container('#south-south','{"x":0,"y":0,"z":12}',new Room(map['0,-2'].data),'0,-2');
     
     //render the room data for the containers
     for (var key in containers) {
@@ -82,7 +86,7 @@ Container.prototype.render = function() {
         var entity = document.createElement('a-entity');
         entity.setAttribute('class','move');
         entity.setAttribute('mixin','move');
-        entity.setAttribute('position',this.position_multipliers.x + ' 1 ' + this.position_multipliers.z);
+        entity.setAttribute('position',this.position_multipliers.x + ' 0.1 ' + this.position_multipliers.z);
         $(this.target).append(entity);
 
         $(entity).click(function() {
@@ -93,16 +97,16 @@ Container.prototype.render = function() {
             var x_mod = 0;
             var y_mod = 0;
 
-            if(move_to == 'room-far') {
+            if(move_to == 'north') {
                 y_mod = 1;
             }
-            else if(move_to == 'room-near') {
+            else if(move_to == 'south') {
                 y_mod = -1;
             }
-            else if(move_to == 'room-middle-left') {
+            else if(move_to == 'west') {
                 x_mod = -1;
             }
-            else if(move_to == 'room-middle-right') {
+            else if(move_to == 'east') {
                 x_mod = 1;
             }
 

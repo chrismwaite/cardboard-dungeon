@@ -18,39 +18,52 @@
       <a-mixin id="left" rotation="0 90 0" material="color: #bdbdbd"></a-mixin>
       <a-mixin id="back" rotation="0 0 0" material="color: #bdbdbd"></a-mixin>
       <a-mixin id="front" rotation="180 0 0" material="color: #bdbdbd"></a-mixin>
-      <a-mixin id="move" geometry="primitive: plane; height: 1; width: 1" material="color: #FFFFFF" rotation="-90 0 0"></a-mixin>
+      <a-mixin id="move" geometry="primitive: plane; height: 0.7; width: 0.7" material="color: #FFFFFF; opacity: 0.5" rotation="-90 0 0"></a-mixin>
     </a-assets>
     <a-scene>
       <a-camera fov="80" position="0 1.8 4" near="0.2" cursor-color="#33CCFF" cursor="fuse: true"></a-camera>
-      
-      <a-entity id="room-far-left">
+      <a-entity light="type: point; intensity: 1.5; distance: 15; decay: 4" position="0 1.8 4"></a-entity>
+
+      <a-entity id="north-west">
       </a-entity>
 
-      <a-entity id="room-far">
+      <a-entity id="north-north">
+      </a-entity>      
+
+      <a-entity id="north">
       </a-entity>
 
-      <a-entity id="room-far-right">
+      <a-entity id="north-east">
       </a-entity>
 
-      <a-entity id="room-middle-left">
+      <a-entity id="west-west">
+      </a-entity>      
+
+      <a-entity id="west">
       </a-entity>
 
-      <a-entity id="room-middle">
+      <a-entity id="center">
       </a-entity>
 
-      <a-entity id="room-middle-right">
+      <a-entity id="east-east">
       </a-entity>
 
-      <a-entity id="room-near-left">
+      <a-entity id="east">
       </a-entity>
 
-      <a-entity id="room-near">
+      <a-entity id="south-west">
       </a-entity>
 
-      <a-entity id="room-near-right">
+      <a-entity id="south-south">
       </a-entity>
 
-      <a-sky color="#323232"></a-sky>
+      <a-entity id="south">
+      </a-entity>
+
+      <a-entity id="south-east">
+      </a-entity>
+
+      <a-sky color="#000"></a-sky>
     </a-scene>
   </body>
 </html>
