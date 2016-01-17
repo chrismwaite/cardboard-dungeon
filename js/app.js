@@ -83,55 +83,58 @@ Container.prototype.render = function() {
             $(this.target).append(entity);
         }
 
-        //add the movement target for the container
-        var entity = document.createElement('a-entity');
-        entity.setAttribute('class','move');
-        entity.setAttribute('mixin','move');
-        entity.setAttribute('position',this.position_multipliers.x + ' 0.1 ' + this.position_multipliers.z);
-        $(this.target).append(entity);
+        //add the movement target for the container - TEMPORARILY hiding from center - eventually movember squares should be removed from containers
+        if(this.target != '#center') {
+            var entity = document.createElement('a-entity');
+            entity.setAttribute('class','move');
+            entity.setAttribute('mixin','move');
+            entity.setAttribute('position',this.position_multipliers.x + ' 0.1 ' + this.position_multipliers.z);
+            $(this.target).append(entity);
+        
 
-        $(entity).click(function() {
-            this.setAttribute('material', 'color', 'red');
-            console.log($(this).parent().attr('id'));
-            var move_to = $(this).parent().attr('id');
-            
-            var x_mod = 0;
-            var y_mod = 0;
+            $(entity).click(function() {
+                this.setAttribute('material', 'color', 'red');
+                console.log($(this).parent().attr('id'));
+                var move_to = $(this).parent().attr('id');
+                
+                var x_mod = 0;
+                var y_mod = 0;
 
-            if(move_to == 'north') {
-                y_mod = 1;
-            }
-            else if(move_to == 'south') {
-                y_mod = -1;
-            }
-            else if(move_to == 'west') {
-                x_mod = -1;
-            }
-            else if(move_to == 'east') {
-                x_mod = 1;
-            }
-
-            for (var key in containers) {
-                var room_key_array = containers[key].room_id.split(',');
-                room_key_array[0] = parseInt(room_key_array[0]) + x_mod;
-                room_key_array[1] = parseInt(room_key_array[1]) + y_mod;
-                var new_room_key = room_key_array.join(',');
-
-                console.log(key + ' => moving from ' + containers[key].room_id + ' to ' + new_room_key);
-
-                if(map[new_room_key])
-                {
-                    containers[key].room = new Room(map[new_room_key].data);
-                    containers[key].room_id = new_room_key;
-                    containers[key].render();
+                if(move_to == 'north') {
+                    y_mod = 1;
                 }
-                else {
-                    containers[key].room = null;
-                    containers[key].room_id = new_room_key;
-                    containers[key].render();
+                else if(move_to == 'south') {
+                    y_mod = -1;
                 }
-            }
-        });
+                else if(move_to == 'west') {
+                    x_mod = -1;
+                }
+                else if(move_to == 'east') {
+                    x_mod = 1;
+                }
+
+                for (var key in containers) {
+                    var room_key_array = containers[key].room_id.split(',');
+                    room_key_array[0] = parseInt(room_key_array[0]) + x_mod;
+                    room_key_array[1] = parseInt(room_key_array[1]) + y_mod;
+                    var new_room_key = room_key_array.join(',');
+
+                    console.log(key + ' => moving from ' + containers[key].room_id + ' to ' + new_room_key);
+
+                    if(map[new_room_key])
+                    {
+                        containers[key].room = new Room(map[new_room_key].data);
+                        containers[key].room_id = new_room_key;
+                        containers[key].render();
+                    }
+                    else {
+                        containers[key].room = null;
+                        containers[key].room_id = new_room_key;
+                        containers[key].render();
+                    }
+                }
+            });
+        }
     }
 }
 

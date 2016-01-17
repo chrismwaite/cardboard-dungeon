@@ -21,7 +21,15 @@
       <a-mixin id="move" geometry="primitive: plane; height: 0.7; width: 0.7" material="color: #FFFFFF; opacity: 0.5" rotation="-90 0 0"></a-mixin>
     </a-assets>
     <a-scene>
-      <a-camera fov="80" position="0 1.8 4" near="0.2" cursor-color="#33CCFF" cursor="fuse: true; timeout:500"></a-camera>
+      <a-entity position="0 1.8 4">
+        <a-camera fov="80" near="0.2" cursor-color="#33CCFF" cursor="fuse: true; timeout:500"></a-camera>
+      </a-entity>
+
+      <a-entity look-controls geometry="primitive: box; width: 0.3; height: 0.3; depth: 0.05" material="color: #cccc00" position="0 0.5 4"></a-entity>
+      <a-entity geometry="primitive: box; width: 0.2; height: 0.2; depth: 0.05" material="color: white" position="0 0.5 4" rotation="0 90 0">
+        <a-entity geometry="primitive: box; width: 0.05; height: 0.2; depth: 0.05" material="color: red" position="0.08 0.01 0"></a-entity>
+      </a-entity>
+
       <a-entity light="type: point; intensity: 1.5; distance: 17; decay: 4" position="0 1.8 4"></a-entity>
 
       <a-entity id="north-west">
