@@ -12,17 +12,20 @@
   <body>
     <a-assets>
       <a-mixin id="wall" geometry="primitive: plane; height: 4; width: 4"></a-mixin>
-      <a-mixin id="top" rotation="90 0 0" material="color: #7e7e7e"></a-mixin>
-      <a-mixin id="bottom" rotation="-90 0 0" material="color: #614126"></a-mixin>
-      <a-mixin id="right" rotation="0 -90 0" material="color: #bdbdbd"></a-mixin>
-      <a-mixin id="left" rotation="0 90 0" material="color: #bdbdbd"></a-mixin>
-      <a-mixin id="back" rotation="0 0 0" material="color: #bdbdbd"></a-mixin>
-      <a-mixin id="front" rotation="180 0 0" material="color: #bdbdbd"></a-mixin>
+      <a-mixin id="top" rotation="90 0 0" material="src: #texture-stone-roof; repeat: 4 4"></a-mixin>
+      <a-mixin id="bottom" rotation="-90 0 0" material="src: #texture-straw; repeat: 4 4"></a-mixin>
+      <a-mixin id="right" rotation="0 -90 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
+      <a-mixin id="left" rotation="0 90 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
+      <a-mixin id="back" rotation="0 0 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
+      <a-mixin id="front" rotation="180 0 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
       <a-mixin id="move" geometry="primitive: plane; height: 0.7; width: 0.7" material="color: #FFFFFF; opacity: 0.5" rotation="-90 0 0"></a-mixin>
+      <img id="texture-stone" src="stone.jpg?v=1">
+      <img id="texture-straw" src="straw.jpg?v=1">
+      <img id="texture-stone-roof" src="stone_roof.jpg?v=1">
     </a-assets>
     <a-scene>
       <a-entity position="0 1.8 4">
-        <a-camera fov="80" near="0.2" cursor-color="#33CCFF" cursor="fuse: true; timeout:500"></a-camera>
+        <a-camera fov="80" wasd-controls-enabled="false" near="0.2" cursor-color="#33CCFF" cursor="fuse: true; timeout:500"></a-camera>
       </a-entity>
 
       <a-entity look-controls geometry="primitive: box; width: 0.3; height: 0.3; depth: 0.05" material="color: #cccc00" position="0 0.5 4"></a-entity>
