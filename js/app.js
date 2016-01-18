@@ -122,7 +122,7 @@ function Room(data) {
 }
 
 function loadMapData(map_name) {
-    $.getJSON('/js/' + map_name, function(data) {         
+    $.getJSON('js/' + map_name, function(data) {         
         //map = JSON.parse(data);
         map = data;
 
