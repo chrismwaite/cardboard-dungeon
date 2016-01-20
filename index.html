@@ -2,16 +2,79 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Hello, World! • A-Frame</title>
-    <meta name="description" content="Hello, World! • A-Frame">
-    <script src="https://aframe.io/releases/latest/aframe.min.js"></script>
+    <title>Cardboard Dungeon</title>
+    <meta name="description" content="Cardboard Dungeon">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="js/aframe.js"></script>
+    <script src="js/jquery-2.2.0.min.js"></script>
+    <script src="js/app.js"></script>
   </head>
   <body>
+    <a-assets>
+      <a-mixin id="wall" geometry="primitive: plane; height: 4; width: 4"></a-mixin>
+      <a-mixin id="top" rotation="90 0 0" material="src: #texture-stone-roof; repeat: 4 4"></a-mixin>
+      <a-mixin id="bottom" rotation="-90 0 0" material="src: #texture-straw; repeat: 4 4"></a-mixin>
+      <a-mixin id="right" rotation="0 -90 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
+      <a-mixin id="left" rotation="0 90 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
+      <a-mixin id="back" rotation="0 0 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
+      <a-mixin id="front" rotation="180 0 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
+      <a-mixin id="move" geometry="primitive: plane; height: 0.7; width: 0.7" material="color: #FFFFFF; opacity: 0.5" rotation="-90 0 0"></a-mixin>
+      <img id="texture-stone" src="stone.jpg?v=3">
+      <img id="texture-straw" src="straw.jpg?v=3">
+      <img id="texture-stone-roof" src="stone_roof.jpg?v=3">
+    </a-assets>
     <a-scene>
-      <a-plane rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-      <a-plane rotation="0 0 0" width="4" height="4" position="0 2 -2"></a-plane>
+      <a-entity position="0 1.8 4">
+        <a-camera fov="80" wasd-controls-enabled="false" near="0.2" cursor-color="#33CCFF" cursor="fuse: true; timeout:500"></a-camera>
+      </a-entity>
 
-      <a-sky color="#ECECEC"></a-sky>
+      <a-entity look-controls geometry="primitive: box; width: 0.3; height: 0.3; depth: 0.05" material="color: #cccc00" position="0 0.5 4"></a-entity>
+      <a-entity geometry="primitive: box; width: 0.2; height: 0.2; depth: 0.05" material="color: white" position="0 0.5 4" rotation="0 90 0">
+        <a-entity geometry="primitive: box; width: 0.05; height: 0.2; depth: 0.05" material="color: red" position="0.08 0.01 0"></a-entity>
+      </a-entity>
+
+      <a-entity light="type: point; intensity: 1.5; distance: 17; decay: 4" position="0 1.8 4"></a-entity>
+
+      <a-entity id="north-west">
+      </a-entity>
+
+      <a-entity id="north-north">
+      </a-entity>      
+
+      <a-entity id="north">
+      </a-entity>
+
+      <a-entity id="north-east">
+      </a-entity>
+
+      <a-entity id="west-west">
+      </a-entity>      
+
+      <a-entity id="west">
+      </a-entity>
+
+      <a-entity id="center">
+      </a-entity>
+
+      <a-entity id="east-east">
+      </a-entity>
+
+      <a-entity id="east">
+      </a-entity>
+
+      <a-entity id="south-west">
+      </a-entity>
+
+      <a-entity id="south-south">
+      </a-entity>
+
+      <a-entity id="south">
+      </a-entity>
+
+      <a-entity id="south-east">
+      </a-entity>
+
+      <a-sky color="#000"></a-sky>
     </a-scene>
   </body>
 </html>
