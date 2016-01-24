@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/aframe.js"></script>
     <script src="js/jquery-2.2.0.min.js"></script>
-    <script src="js/app.js?v=3"></script>
+    <script src="js/app.js?v=8"></script>
   </head>
   <body>
     <a-assets>
@@ -25,7 +25,11 @@
     </a-assets>
     <a-scene>
       <a-entity position="0 1.8 4">
-        <a-camera fov="80" wasd-controls-enabled="false" near="0.2" cursor-color="#33CCFF" cursor="fuse: true; timeout:500"></a-camera>
+        <a-entity camera look-controls wasd-controls="enabled: false">
+          <a-entity id="cursor" position="0 0 -1" geometry="primitive: ring; radiusOuter: 0.016; radiusInner: 0.01" material="color: #FFF;" cursor="fuse: true">
+            <a-animation begin="fusing" easing="ease" attribute="scale" fill="none" from="1 1 1" to="0 0 0" dur="1500"></a-animation>
+          </a-entity>
+        </a-entity>
       </a-entity>
 
       <a-entity look-controls geometry="primitive: box; width: 0.3; height: 0.3; depth: 0.05" material="color: #cccc00" position="0 0.5 4"></a-entity>
