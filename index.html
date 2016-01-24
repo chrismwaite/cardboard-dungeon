@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/aframe.js"></script>
     <script src="js/jquery-2.2.0.min.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/app.js?v=3"></script>
   </head>
   <body>
     <a-assets>
@@ -36,42 +36,128 @@
       <a-entity light="type: point; intensity: 1.5; distance: 17; decay: 4" position="0 1.8 4"></a-entity>
 
       <a-entity id="north-west">
+        <a-entity class="top" mixin="wall top" position="-4 4 0" visible="false"></a-entity>
+        <a-entity class="bottom" mixin="wall bottom" position="-4 0 0" visible="true"></a-entity>
+        <a-entity class="left" mixin="wall left" position="-6 2 0" visible="false"></a-entity>
+        <a-entity class="right" mixin="wall right" position="-2 2 0" visible="false"></a-entity>
+        <a-entity class="back" mixin="wall back" position="-4 2 -2" visible="false"></a-entity>
+        <a-entity class="front" mixin="wall front" position="-4 2 2" visible="false"></a-entity>
       </a-entity>
 
       <a-entity id="north-north">
-      </a-entity>      
+        <a-entity class="top" mixin="wall top" position="0 4 -4" visible="false"></a-entity>
+        <a-entity class="bottom" mixin="wall bottom" position="0 0 -4" visible="true"></a-entity>
+        <a-entity class="left" mixin="wall left" position="-2 2 -4" visible="false"></a-entity>
+        <a-entity class="right" mixin="wall right" position="2 2 -4" visible="false"></a-entity>
+        <a-entity class="back" mixin="wall back" position="0 2 -6" visible="false"></a-entity>
+        <a-entity class="front" mixin="wall front" position="0 2 -2" visible="false"></a-entity>
+      </a-entity>
 
       <a-entity id="north">
+        <a-entity class="top" mixin="wall top" position="0 4 0" visible="false"></a-entity>
+        <a-entity class="bottom" mixin="wall bottom" position="0 0 0" visible="true"></a-entity>
+        <a-entity class="left" mixin="wall left" position="-2 2 0" visible="false"></a-entity>
+        <a-entity class="right" mixin="wall right" position="2 2 0" visible="false"></a-entity>
+        <a-entity class="back" mixin="wall back" position="0 2 -2" visible="false"></a-entity>
+        <a-entity class="front" mixin="wall front" position="0 2 2" visible="false"></a-entity>
+
+        <a-entity class="move" mixin="move" position="0 0.1 0"></a-entity>
       </a-entity>
 
       <a-entity id="north-east">
+        <a-entity class="top" mixin="wall top" position="4 4 0" visible="false"></a-entity>
+        <a-entity class="bottom" mixin="wall bottom" position="4 0 0" visible="true"></a-entity>
+        <a-entity class="left" mixin="wall left" position="2 2 0" visible="false"></a-entity>
+        <a-entity class="right" mixin="wall right" position="6 2 0" visible="false"></a-entity>
+        <a-entity class="back" mixin="wall back" position="4 2 -2" visible="false"></a-entity>
+        <a-entity class="front" mixin="wall front" position="4 2 2" visible="false"></a-entity>
       </a-entity>
 
       <a-entity id="west-west">
-      </a-entity>      
+        <a-entity class="top" mixin="wall top" position="-8 4 4" visible="false"></a-entity>
+        <a-entity class="bottom" mixin="wall bottom" position="-8 0 4" visible="true"></a-entity>
+        <a-entity class="left" mixin="wall left" position="-10 2 4" visible="false"></a-entity>
+        <a-entity class="right" mixin="wall right" position="-6 2 4" visible="false"></a-entity>
+        <a-entity class="back" mixin="wall back" position="-8 2 2" visible="false"></a-entity>
+        <a-entity class="front" mixin="wall front" position="-8 2 6" visible="false"></a-entity>
+      </a-entity>
 
       <a-entity id="west">
+        <a-entity class="top" mixin="wall top" position="-4 4 4" visible="false"></a-entity>
+        <a-entity class="bottom" mixin="wall bottom" position="-4 0 4" visible="true"></a-entity>
+        <a-entity class="left" mixin="wall left" position="-6 2 4" visible="false"></a-entity>
+        <a-entity class="right" mixin="wall right" position="-2 2 4" visible="false"></a-entity>
+        <a-entity class="back" mixin="wall back" position="-4 2 2" visible="false"></a-entity>
+        <a-entity class="front" mixin="wall front" position="-4 2 6" visible="false"></a-entity>
+
+        <a-entity class="move" mixin="move" position="-4 0.1 4"></a-entity>
       </a-entity>
 
       <a-entity id="center">
+        <a-entity class="top" mixin="wall top" position="0 4 4" visible="false"></a-entity>
+        <a-entity class="bottom" mixin="wall bottom" position="0 0 4" visible="true"></a-entity>
+        <a-entity class="left" mixin="wall left" position="-2 2 4" visible="false"></a-entity>
+        <a-entity class="right" mixin="wall right" position="2 2 4" visible="false"></a-entity>
+        <a-entity class="back" mixin="wall back" position="0 2 2" visible="false"></a-entity>
+        <a-entity class="front" mixin="wall front" position="0 2 6" visible="false"></a-entity>
       </a-entity>
 
       <a-entity id="east-east">
+        <a-entity class="top" mixin="wall top" position="8 4 4" visible="false"></a-entity>
+        <a-entity class="bottom" mixin="wall bottom" position="8 0 4" visible="true"></a-entity>
+        <a-entity class="left" mixin="wall left" position="6 2 4" visible="false"></a-entity>
+        <a-entity class="right" mixin="wall right" position="10 2 4" visible="false"></a-entity>
+        <a-entity class="back" mixin="wall back" position="8 2 2" visible="false"></a-entity>
+        <a-entity class="front" mixin="wall front" position="8 2 6" visible="false"></a-entity>
       </a-entity>
 
       <a-entity id="east">
+        <a-entity class="top" mixin="wall top" position="4 4 4" visible="false"></a-entity>
+        <a-entity class="bottom" mixin="wall bottom" position="4 0 4" visible="true"></a-entity>
+        <a-entity class="left" mixin="wall left" position="2 2 4" visible="false"></a-entity>
+        <a-entity class="right" mixin="wall right" position="6 2 4" visible="false"></a-entity>
+        <a-entity class="back" mixin="wall back" position="4 2 2" visible="false"></a-entity>
+        <a-entity class="front" mixin="wall front" position="4 2 6" visible="false"></a-entity>
+
+        <a-entity class="move" mixin="move" position="4 0.1 4"></a-entity>
       </a-entity>
 
       <a-entity id="south-west">
+        <a-entity class="top" mixin="wall top" position="-4 4 8" visible="false"></a-entity>
+        <a-entity class="bottom" mixin="wall bottom" position="-4 0 8" visible="true"></a-entity>
+        <a-entity class="left" mixin="wall left" position="-6 2 8" visible="false"></a-entity>
+        <a-entity class="right" mixin="wall right" position="-2 2 8" visible="false"></a-entity>
+        <a-entity class="back" mixin="wall back" position="-4 2 6" visible="false"></a-entity>
+        <a-entity class="front" mixin="wall front" position="-4 2 10" visible="false"></a-entity>
       </a-entity>
 
       <a-entity id="south-south">
+        <a-entity class="top" mixin="wall top" position="0 4 12" visible="false"></a-entity>
+        <a-entity class="bottom" mixin="wall bottom" position="0 0 12" visible="true"></a-entity>
+        <a-entity class="left" mixin="wall left" position="-2 2 12" visible="false"></a-entity>
+        <a-entity class="right" mixin="wall right" position="2 2 12" visible="false"></a-entity>
+        <a-entity class="back" mixin="wall back" position="0 2 10" visible="false"></a-entity>
+        <a-entity class="front" mixin="wall front" position="0 2 14" visible="false"></a-entity>
       </a-entity>
 
       <a-entity id="south">
+        <a-entity class="top" mixin="wall top" position="0 4 8" visible="false"></a-entity>
+        <a-entity class="bottom" mixin="wall bottom" position="0 0 8" visible="true"></a-entity>
+        <a-entity class="left" mixin="wall left" position="-2 2 8" visible="false"></a-entity>
+        <a-entity class="right" mixin="wall right" position="2 2 8" visible="false"></a-entity>
+        <a-entity class="back" mixin="wall back" position="0 2 6" visible="false"></a-entity>
+        <a-entity class="front" mixin="wall front" position="0 2 10" visible="false"></a-entity>
+
+        <a-entity class="move" mixin="move" position="0 0.1 8"></a-entity>
       </a-entity>
 
       <a-entity id="south-east">
+        <a-entity class="top" mixin="wall top" position="4 4 8" visible="false"></a-entity>
+        <a-entity class="bottom" mixin="wall bottom" position="4 0 8" visible="true"></a-entity>
+        <a-entity class="left" mixin="wall left" position="2 2 8" visible="false"></a-entity>
+        <a-entity class="right" mixin="wall right" position="6 2 8" visible="false"></a-entity>
+        <a-entity class="back" mixin="wall back" position="4 2 6" visible="false"></a-entity>
+        <a-entity class="front" mixin="wall front" position="4 2 10" visible="false"></a-entity>
       </a-entity>
 
       <a-sky color="#000"></a-sky>
