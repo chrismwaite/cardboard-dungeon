@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/aframe.js"></script>
     <script src="js/jquery-2.2.0.min.js"></script>
-    <script src="js/app.js?v=0.9"></script>
+    <script src="js/app.js?v=0.3"></script>
   </head>
   <body>
     <a-assets>
@@ -18,7 +18,7 @@
       <a-mixin id="left" rotation="0 90 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
       <a-mixin id="back" rotation="0 0 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
       <a-mixin id="front" rotation="180 0 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
-      <a-mixin id="move" geometry="primitive: plane; height: 0.7; width: 0.7" material="color: #FFFFFF; opacity: 0.5" rotation="-90 0 0"></a-mixin>
+      <a-mixin id="move" geometry="primitive: sphere; radius: 0.25;" material="color: #0000ff; opacity: 1"></a-mixin>
       <img id="texture-stone" src="stone.jpg?v=3">
       <img id="texture-straw" src="straw.jpg?v=3">
       <img id="texture-stone-roof" src="stone_roof.jpg?v=3">
@@ -26,7 +26,7 @@
     <a-scene>
       <a-entity position="0 1.8 4">
         <a-entity camera look-controls wasd-controls="enabled: false">
-          <a-entity id="cursor" position="0 0 -1" geometry="primitive: ring; radiusOuter: 0.016; radiusInner: 0.01" material="color: #FFF;" cursor="fuse: true">
+          <a-entity id="cursor" position="0 0 -1" geometry="primitive: ring; radiusOuter: 0.016; radiusInner: 0.01" material="color: #FFF;" cursor="fuse: true; maxDistance: 8">
             <a-animation begin="fusing" easing="ease" attribute="scale" fill="none" from="1 1 1" to="0 0 0" dur="1500"></a-animation>
           </a-entity>
         </a-entity>
@@ -47,7 +47,7 @@
       </a-entity>
 
       <a-entity id="north">
-        <a-entity class="move" mixin="move" position="0 0.1 0"></a-entity>
+        <a-entity class="move" mixin="move" position="0 3 0"></a-entity>
       </a-entity>
 
       <a-entity id="north-east">
@@ -57,7 +57,7 @@
       </a-entity>
 
       <a-entity id="west">
-        <a-entity class="move" mixin="move" position="-4 0.1 4"></a-entity>
+        <a-entity class="move" mixin="move" position="-4 3 4"></a-entity>
       </a-entity>
 
       <a-entity id="center">
@@ -67,7 +67,7 @@
       </a-entity>
 
       <a-entity id="east">
-        <a-entity class="move" mixin="move" position="4 0.1 4"></a-entity>
+        <a-entity class="move" mixin="move" position="4 3 4"></a-entity>
       </a-entity>
 
       <a-entity id="south-west">
@@ -77,7 +77,7 @@
       </a-entity>
 
       <a-entity id="south">
-        <a-entity class="move" mixin="move" position="0 0.1 8"></a-entity>
+        <a-entity class="move" mixin="move" position="0 3 8"></a-entity>
       </a-entity>
 
       <a-entity id="south-east">
@@ -91,6 +91,7 @@
       </a-entity>
 
       <a-entity id="bottom-north">
+        <a-entity class="move" mixin="move" position="0 -1 0"></a-entity>
       </a-entity>
 
       <a-entity id="bottom-north-east">
@@ -100,6 +101,7 @@
       </a-entity>
 
       <a-entity id="bottom-west">
+        <a-entity class="move" mixin="move" position="-4 -1 4"></a-entity>
       </a-entity>
 
       <a-entity id="bottom-center">
@@ -109,6 +111,7 @@
       </a-entity>
 
       <a-entity id="bottom-east">
+        <a-entity class="move" mixin="move" position="4 -1 4"></a-entity>
       </a-entity>
 
       <a-entity id="bottom-south-west">
@@ -118,6 +121,7 @@
       </a-entity>
 
       <a-entity id="bottom-south">
+        <a-entity class="move" mixin="move" position="0 -1 8"></a-entity>
       </a-entity>
 
       <a-entity id="bottom-south-east">
@@ -131,6 +135,7 @@
       </a-entity>
 
       <a-entity id="top-north">
+        <a-entity class="move" mixin="move" position="0 7 0"></a-entity>
       </a-entity>
 
       <a-entity id="top-north-east">
@@ -140,6 +145,7 @@
       </a-entity>
 
       <a-entity id="top-west">
+        <a-entity class="move" mixin="move" position="-4 7 4"></a-entity>
       </a-entity>
 
       <a-entity id="top-center">
@@ -149,6 +155,7 @@
       </a-entity>
 
       <a-entity id="top-east">
+        <a-entity class="move" mixin="move" position="4 7 4"></a-entity>
       </a-entity>
 
       <a-entity id="top-south-west">
@@ -158,6 +165,7 @@
       </a-entity>
 
       <a-entity id="top-south">
+        <a-entity class="move" mixin="move" position="0 7 8"></a-entity>
       </a-entity>
 
       <a-entity id="top-south-east">

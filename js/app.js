@@ -6,65 +6,50 @@ $(document).ready(function() {
     loadMapData("map.json");
 
     $(".move").click(function() {
-        var move_to = $(this).parent().attr("id");
-
-        var x_mod = 0;
-        var y_mod = 0;
-        var z_mod = 0;
-
-        if(move_to == "north") {
-            y_mod = 1;
-        }
-        else if(move_to == "south") {
-            y_mod = -1;
-        }
-        else if(move_to == "west") {
-            x_mod = -1;
-        }
-        else if(move_to == "east") {
-            x_mod = 1;
-        }
-
-        //TEMP - we're doing a quick check to see if the target room has a floor
-        //if not, we're dropping a level
-        //eventually this should be a separate click target for climbing
-        var temp_room_key_array = containers["center"].room_id.split(",");
-        temp_room_key_array[0] = parseInt(temp_room_key_array[0]) + x_mod;
-        temp_room_key_array[1] = parseInt(temp_room_key_array[1]) + y_mod;
-        temp_room_key_array[2] = parseInt(temp_room_key_array[2]) + z_mod;
-        var temp_key = temp_room_key_array.join(",");
-        
-        console.log("Target key: " + temp_key);
-        
-        if(map[temp_key] && map[temp_key].data.bottom == false) {
-            z_mod = -1;
-        }
-
-        //END OF TEMP
-
-        for (var key in containers) {
-            var room_key_array = containers[key].room_id.split(",");
-            room_key_array[0] = parseInt(room_key_array[0]) + x_mod;
-            room_key_array[1] = parseInt(room_key_array[1]) + y_mod;
-            room_key_array[2] = parseInt(room_key_array[2]) + z_mod;
-            var new_room_key = room_key_array.join(",");
-
-            console.log(key + " => moving from " + containers[key].room_id + " to " + new_room_key);
-
-            if(map[new_room_key])
-            {
-                containers[key].room = new Room(map[new_room_key].data);
-                containers[key].room_id = new_room_key;
-                containers[key].render();
-            }
-            else {
-                containers[key].room = null;
-                containers[key].room_id = new_room_key;
-                containers[key].render();
-            }
-        }
+        move(this);
     });
 });
+
+//click events
+function move(dom_element) {
+    //fetch the current and target room id
+    var current_room_key_array = containers["center"].room_id.split(",");
+    var container_key = $(dom_element).parent().attr("id");
+    var target_room_key_array = containers[container_key].room_id.split(",")
+
+    //console.log("current room id: " + current_room_key_array);
+    //console.log("target room id: " + target_room_key_array);
+
+    //calculate the offsets
+    var offset_x = parseInt(target_room_key_array[0]) - parseInt(current_room_key_array[0]);
+    var offset_y = parseInt(target_room_key_array[1]) - parseInt(current_room_key_array[1]);
+    var offset_z = parseInt(target_room_key_array[2]) - parseInt(current_room_key_array[2]);
+
+    //apply to each room
+    //console.log("Each room will have these transforms applied:", offset_x, offset_y, offset_z);
+
+    for (var key in containers) {
+        var room_key_array = containers[key].room_id.split(",");
+        room_key_array[0] = parseInt(room_key_array[0]) + offset_x;
+        room_key_array[1] = parseInt(room_key_array[1]) + offset_y;
+        room_key_array[2] = parseInt(room_key_array[2]) + offset_z;
+        var new_room_key = room_key_array.join(",");
+
+        //console.log(key + " => moving from " + containers[key].room_id + " to " + new_room_key);
+
+        if(map[new_room_key])
+        {
+            containers[key].room = new Room(map[new_room_key].data);
+            containers[key].room_id = new_room_key;
+            containers[key].render();
+        }
+        else {
+            containers[key].room = null;
+            containers[key].room_id = new_room_key;
+            containers[key].render();
+        }
+    }
+}
 
 //Container Entity
 function Container(target, multipliers, room, room_id) {
@@ -129,7 +114,15 @@ Container.prototype.render = function() {
         $(this.target).find(".right").attr("visible",(this.room.data.right ? this.room.data.right : "false"));
         $(this.target).find(".back").attr("visible",(this.room.data.back ? this.room.data.back : "false"));
         $(this.target).find(".front").attr("visible",(this.room.data.front ? this.room.data.front : "false"));
+
+        if(this.room.data.bottom == false) {
+            $(this.target).find(".move").attr("visible","false");
+        }
+        else {
+            $(this.target).find(".move").attr("visible","true");
+        }
     }
+
     else {
         $(this.target).find(".top").attr("visible","false");
         $(this.target).find(".bottom").attr("visible","false");
