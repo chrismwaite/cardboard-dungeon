@@ -5,14 +5,33 @@ $(document).ready(function() {
     //load data from map
     loadMapData("map.json");
 
+    //map traversal
     $(".move").click(function() {
         move(this);
+        return false;
+    });
+
+    //enter inventory room
+    $("#inventory").click(function() {
+        console.log("test");
+        $("#player").attr("scale","0.1 0.1 0.1");
+        $("#player").attr("position","0 0.64 3.6");
+        $("#inventory-light").attr("visible","true");
+        return false;
+    });
+
+    //exit inventory room
+    $("#exit-inventory").click(function() {
+        $("#player").attr("scale","1 1 1");
+        $("#player").attr("position","0 1.8 4");
+        $("#inventory-light").attr("visible","false");
+        return false;
     });
 });
 
 //click events
 function move(dom_element) {
-    //fetch the current and target room id
+    //fetch the current and target room ids
     var current_room_key_array = containers["center"].room_id.split(",");
     var container_key = $(dom_element).parent().attr("id");
     var target_room_key_array = containers[container_key].room_id.split(",")
@@ -106,7 +125,7 @@ Container.prototype.init = function() {
 }
 
 Container.prototype.render = function() {
-    //set the visible component on the room sides for this container
+    //set the visible component on the entities for this container
     if(this.room) {
         $(this.target).find(".top").attr("visible",(this.room.data.top ? this.room.data.top : "false"));
         $(this.target).find(".bottom").attr("visible",(this.room.data.bottom ? this.room.data.bottom : "false"));
@@ -122,7 +141,7 @@ Container.prototype.render = function() {
             $(this.target).find(".move").attr("visible","true");
         }
     }
-
+    //if no room object exsists in the container, hide everything
     else {
         $(this.target).find(".top").attr("visible","false");
         $(this.target).find(".bottom").attr("visible","false");
@@ -130,6 +149,7 @@ Container.prototype.render = function() {
         $(this.target).find(".right").attr("visible","false");
         $(this.target).find(".back").attr("visible","false");
         $(this.target).find(".front").attr("visible","false");
+        $(this.target).find(".move").attr("visible","false");
     }
 }
 
