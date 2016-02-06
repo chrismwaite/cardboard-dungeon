@@ -5,7 +5,7 @@
     <title>Cardboard Dungeon</title>
     <meta name="description" content="Cardboard Dungeon">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script src="js/aframe.js"></script>
+    <script src="js/aframe-prod.js"></script>
     <script src="js/jquery-2.2.0.min.js"></script>
     <script src="js/app.js?v=0.1.01"></script>
   </head>
@@ -31,11 +31,13 @@
           <a-entity id="cursor" position="0 0 -1" geometry="primitive: ring; radiusOuter: 0.016; radiusInner: 0.01" material="color: #FFF;" cursor="fuse: true; maxDistance: 8">
             <a-animation begin="fusing" easing="ease" attribute="scale" fill="none" from="1 1 1" to="0 0 0" dur="1500"></a-animation>
           </a-entity>
+          <!-- compass -->
+          <a-model look-controls="enabled: false" src="models/compass_case2.dae" position="-0.8 -0.6 -0.65" rotation="-10 45 0" scale="0.05 0.05 0.05"></a-model>
         </a-entity>
       </a-entity>
 
       <!-- inventory -->
-      <a-entity id="inventory" position="0 0.5 3.6">
+      <a-entity id="inventory" position="0 0.5 4">
         <a-entity id="inventory-light" visible="false" light="type: point; intensity: 1.8; distance: 45; decay: 2" position="0 3 0"></a-entity>
         <a-entity geometry="primitive: plane; height: 0.3; width: 0.3" rotation="-90 0 0" material="color: #FF69B4"></a-entity>
         <a-entity geometry="primitive: plane; height: 0.3; width: 0.3" position="0 0.15 -0.15" material="color: #FF69B4"></a-entity>
@@ -43,12 +45,6 @@
         <a-entity geometry="primitive: plane; height: 0.3; width: 0.3" rotation="0 -90 0" position="0.15 0.15 0" material="color: #FF69B4"></a-entity>
         <a-entity geometry="primitive: plane; height: 0.3; width: 0.3" position="0 0.15 0.15" material="side:double; color: #FF69B4"></a-entity>
         <a-entity id="exit-inventory" geometry="primitive: box; height: 0.05; width: 0.05; depth: 0.05" position="-0.1 0.025 -0.1" material="color: #FFFFFF"></a-entity>
-      </a-entity>
-
-      <!-- compass -->
-      <a-entity look-controls geometry="primitive: box; width: 0.3; height: 0.3; depth: 0.05" material="color: #cccc00" position="0 0.5 4"></a-entity>
-      <a-entity geometry="primitive: box; width: 0.2; height: 0.2; depth: 0.05" material="color: white" position="0 0.5 4" rotation="0 90 0">
-        <a-entity geometry="primitive: box; width: 0.05; height: 0.2; depth: 0.05" material="color: red" position="0.08 0.01 0"></a-entity>
       </a-entity>
 
       <!-- ground floor -->

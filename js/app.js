@@ -15,7 +15,7 @@ $(document).ready(function() {
     $("#inventory").click(function() {
         console.log("test");
         $("#player").attr("scale","0.1 0.1 0.1");
-        $("#player").attr("position","0 0.64 3.6");
+        $("#player").attr("position","0 0.64 4");
         $("#inventory-light").attr("visible","true");
         return false;
     });
