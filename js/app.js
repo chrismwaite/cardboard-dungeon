@@ -13,18 +13,21 @@ $(document).ready(function() {
 
     //enter inventory room
     $("#inventory").click(function() {
-        console.log("test");
-        $("#player").attr("scale","0.1 0.1 0.1");
-        $("#player").attr("position","0 0.64 4");
-        $("#inventory-light").attr("visible","true");
+        //seems to be a scaling issue where the new position does not equal 1.8 but is a small fraction over
+        if($("#player").attr("position").y > 1) {
+            document.querySelector('#player').emit('animate-player-scale-down');
+            $("#inventory-light").attr("visible","true");
+            document.querySelector('#inventory-light').emit('animate-player-scale-down');
+        }
         return false;
     });
 
     //exit inventory room
     $("#exit-inventory").click(function() {
-        $("#player").attr("scale","1 1 1");
-        $("#player").attr("position","0 1.8 4");
-        $("#inventory-light").attr("visible","false");
+        if($("#player").attr("position").y < 1) {
+            document.querySelector('#player').emit('animate-player-scale-up');
+            $("#inventory-light").attr("visible","false");
+        }
         return false;
     });
 });
