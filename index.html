@@ -32,7 +32,7 @@
             <a-animation begin="fusing" easing="ease" attribute="scale" fill="none" from="1 1 1" to="0 0 0" dur="1500"></a-animation>
           </a-entity>
           <!-- compass -->
-          <a-model look-controls="enabled: false" src="models/compass_case2.dae" position="-0.6 -0.6 -0.65" rotation="-10 45 0" scale="0.05 0.05 0.05"></a-model>
+          <!--<a-model look-controls="enabled: false" src="models/compass_case2.dae" position="-0.6 -0.6 -0.65" rotation="-10 45 0" scale="0.05 0.05 0.05"></a-model>-->
         </a-entity>
 
         <!-- animations -->
@@ -53,6 +53,17 @@
         <a-entity geometry="primitive: plane; height: 0.3; width: 0.3" rotation="0 -90 0" position="0.15 0.15 0" material="color: #FF69B4"></a-entity>
         <a-entity geometry="primitive: plane; height: 0.3; width: 0.3" position="0 0.15 0.15" material="side:double; color: #FF69B4"></a-entity>
         <a-entity id="exit-inventory" geometry="primitive: box; height: 0.05; width: 0.05; depth: 0.05" position="-0.1 0.025 -0.1" material="color: #FFFFFF"></a-entity>
+        <a-model src="models/table.dae" position="0 0 -0.1" scale="0.005 0.005 0.005"></a-model>
+        <!-- items -->
+        <a-entity id="inv-compass" position="-0.02 0.075 -0.075" scale="0.001 0.001 0.001" visible="false">
+          <a-model src="models/compass.dae" position="0 0 0"></a-model>
+          <a-entity geometry="primitive: plane; height: 20; width: 20" position="0 4.1 0" rotation="-90 0 0" material="transparent: true; opacity: 0"></a-entity>
+        </a-entity>
+      </a-entity>
+
+      <a-entity id="compass" position="0 0 3">
+        <a-model src="models/compass.dae" position="0 0 0" scale="0.02 0.02 0.02"></a-model>
+        <a-entity geometry="primitive: plane; height: 0.3; width: 0.3" position="0 0.1 0" rotation="-90 0 0" material="transparent: true; opacity: 0"></a-entity>
       </a-entity>
 
       <!-- ground floor -->

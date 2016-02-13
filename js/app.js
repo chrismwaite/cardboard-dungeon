@@ -11,6 +11,12 @@ $(document).ready(function() {
         return false;
     });
 
+    $("#compass").click(function() {
+        var compass = $(this);
+        compass.remove();
+        $("#inv-compass").attr("visible","true");
+    });
+
     //enter inventory room
     $("#inventory").click(function() {
         //seems to be a scaling issue where the new position does not equal 1.8 but is a small fraction over
