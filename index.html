@@ -12,16 +12,16 @@
   <body>
     <a-assets>
       <a-mixin id="wall" geometry="primitive: plane; height: 4; width: 4"></a-mixin>
-      <a-mixin id="top" rotation="90 0 0" material="src: #texture-stone-roof; repeat: 4 4"></a-mixin>
-      <a-mixin id="bottom" rotation="-90 0 0" material="src: #texture-straw; repeat: 4 4"></a-mixin>
+      <a-mixin id="top" rotation="90 0 0" material="src: #texture-stone-roof; repeat:2 2"></a-mixin>
+      <a-mixin id="bottom" rotation="-90 0 0" material="src: #texture-straw; repeat: 2 2"></a-mixin>
       <a-mixin id="right" rotation="0 -90 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
       <a-mixin id="left" rotation="0 90 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
       <a-mixin id="back" rotation="0 0 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
       <a-mixin id="front" rotation="180 0 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
       <a-mixin id="move" geometry="primitive: sphere; radius: 0.25;" material="color: #0000ff; opacity: 1"></a-mixin>
-      <img id="texture-stone" src="stone.jpg?v=3">
-      <img id="texture-straw" src="straw.jpg?v=3">
-      <img id="texture-stone-roof" src="stone_roof.jpg?v=3">
+      <img id="texture-stone" src="stone_wall.png?v=1">
+      <img id="texture-straw" src="stone_floor_brown.png?v=1">
+      <img id="texture-stone-roof" src="stone_ceiling.png?v=1">
     </a-assets>
     <a-scene>
       <!-- player -->
