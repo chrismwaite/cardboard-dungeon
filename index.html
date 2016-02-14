@@ -19,9 +19,9 @@
       <a-mixin id="back" rotation="0 0 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
       <a-mixin id="front" rotation="180 0 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
       <a-mixin id="move" geometry="primitive: sphere; radius: 0.25;" material="color: #0000ff; opacity: 1"></a-mixin>
-      <img id="texture-stone" src="stone_wall.png?v=1">
-      <img id="texture-straw" src="stone_floor_brown.png?v=1">
-      <img id="texture-stone-roof" src="stone_ceiling.png?v=1">
+      <img id="texture-stone" src="stone_wall.png?v=2">
+      <img id="texture-straw" src="stone_floor_brown.png?v=2">
+      <img id="texture-stone-roof" src="stone_ceiling.png?v=2">
     </a-assets>
     <a-scene>
       <!-- player -->
@@ -47,15 +47,15 @@
         <a-entity id="inventory-light" visible="true" light="type: point; intensity: 0; distance: 45; decay: 2" position="0 3 0">
           <a-animation begin="animate-player-scale-down" easing="ease" attribute="light.intensity" fill="forwards" from="0" to="1.8" dur="1500"></a-animation>
         </a-entity>
-        <a-entity geometry="primitive: plane; height: 0.3; width: 0.3" rotation="-90 0 0" material="color: #FF69B4"></a-entity>
-        <a-entity geometry="primitive: plane; height: 0.3; width: 0.3" position="0 0.15 -0.15" material="color: #FF69B4"></a-entity>
-        <a-entity geometry="primitive: plane; height: 0.3; width: 0.3" rotation="0 90 0" position="-0.15 0.15 0" material="color: #FF69B4"></a-entity>
-        <a-entity geometry="primitive: plane; height: 0.3; width: 0.3" rotation="0 -90 0" position="0.15 0.15 0" material="color: #FF69B4"></a-entity>
-        <a-entity geometry="primitive: plane; height: 0.3; width: 0.3" position="0 0.15 0.15" material="side:double; color: #FF69B4"></a-entity>
-        <a-entity id="exit-inventory" geometry="primitive: box; height: 0.05; width: 0.05; depth: 0.05" position="-0.1 0.025 -0.1" material="color: #FFFFFF"></a-entity>
-        <a-model src="models/table.dae" position="0 0 -0.1" scale="0.005 0.005 0.005"></a-model>
+        <a-entity geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" material="color: #FF69B4"></a-entity>
+        <a-entity geometry="primitive: plane; height: 0.5; width: 0.5" position="0 0.25 -0.25" material="color: #FF69B4"></a-entity>
+        <a-entity geometry="primitive: plane; height: 0.5; width: 0.5" rotation="0 90 0" position="-0.25 0.25 0" material="color: #FF69B4"></a-entity>
+        <a-entity geometry="primitive: plane; height: 0.5; width: 0.5" rotation="0 -90 0" position="0.25 0.25 0" material="color: #FF69B4"></a-entity>
+        <a-entity geometry="primitive: plane; height: 0.5; width: 0.5" position="0 0.25 0.25" material="side:double; color: #FF69B4"></a-entity>
+        <a-entity id="exit-inventory" geometry="primitive: box; height: 0.05; width: 0.05; depth: 0.05" position="-0.2 0.025 -0.2" material="color: #FFFFFF"></a-entity>
+        <a-model src="models/table.dae" position="0 0 -0.2" scale="0.005 0.005 0.005"></a-model>
         <!-- items -->
-        <a-entity id="inv-compass" position="-0.02 0.075 -0.075" scale="0.001 0.001 0.001" visible="false">
+        <a-entity id="inv-compass" position="-0.02 0.075 -0.18" scale="0.001 0.001 0.001" visible="false">
           <a-model src="models/compass.dae" position="0 0 0"></a-model>
           <a-entity geometry="primitive: plane; height: 20; width: 20" position="0 4.1 0" rotation="-90 0 0" material="transparent: true; opacity: 0"></a-entity>
         </a-entity>
