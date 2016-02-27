@@ -43,17 +43,25 @@
       </a-entity>
 
       <!-- inventory -->
-      <a-entity id="inventory" position="0 0.5 4">
-        <a-entity id="inventory-light" visible="true" light="type: point; intensity: 0; distance: 45; decay: 2" position="0 3 0">
-          <a-animation begin="animate-player-scale-down" easing="ease" attribute="light.intensity" fill="forwards" from="0" to="1.8" dur="1500"></a-animation>
+      <a-entity id="inventory" position="0 0.1 4">
+        <a-entity id="inv-slot-1" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0 0 0" material="color: #FF69B4">
+          <a-animation begin="animate-inventory" easing="ease" attribute="position" fill="forwards" from="0 0 0" to="0 0 -0.5" dur="1500"></a-animation>
+          <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="0 0 -0.5" to="0 0 0" dur="1500"></a-animation>
         </a-entity>
-        <a-entity geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" material="color: #FF69B4"></a-entity>
-        <a-entity geometry="primitive: plane; height: 0.5; width: 0.5" position="0 0.25 -0.25" material="color: #FF69B4"></a-entity>
-        <a-entity geometry="primitive: plane; height: 0.5; width: 0.5" rotation="0 90 0" position="-0.25 0.25 0" material="color: #FF69B4"></a-entity>
-        <a-entity geometry="primitive: plane; height: 0.5; width: 0.5" rotation="0 -90 0" position="0.25 0.25 0" material="color: #FF69B4"></a-entity>
-        <a-entity geometry="primitive: plane; height: 0.5; width: 0.5" position="0 0.25 0.25" material="side:double; color: #FF69B4"></a-entity>
-        <a-entity id="exit-inventory" geometry="primitive: box; height: 0.05; width: 0.05; depth: 0.05" position="-0.2 0.025 -0.2" material="color: #FFFFFF"></a-entity>
-        <a-model src="models/table.dae" position="0 0 -0.2" scale="0.005 0.005 0.005"></a-model>
+        <a-entity id="inv-slot-2" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0 0 0" material="color: #FF69B4">
+          <a-animation begin="animate-inventory" easing="ease" attribute="position" fill="forwards" from="0 0 0" to="0 0 0.5" dur="1500"></a-animation>
+          <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="0 0 0.5" to="0 0 0" dur="1500"></a-animation>
+        </a-entity>
+        <a-entity id="inv-slot-3" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0 0 0" material="color: #FF69B4">
+          <a-animation begin="animate-inventory" easing="ease" attribute="position" fill="forwards" from="0 0 0" to="-0.5 0 0" dur="1500"></a-animation>
+          <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="-0.5 0 0" to="0 0 0" dur="1500"></a-animation>
+        </a-entity>
+        <a-entity id="inv-slot-4" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0 0 0" material="color: #FF69B4">
+          <a-animation begin="animate-inventory" easing="ease" attribute="position" fill="forwards" from="0 0 0" to="0.5 0 0" dur="1500"></a-animation>
+          <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="0.5 0 0" to="0 0 0" dur="1500"></a-animation>
+        </a-entity>
+        <a-entity id="exit-inventory" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0 0 0" material="color: #FF69B4"></a-entity>
+
         <!-- items -->
         <a-entity id="inv-compass" position="-0.02 0.075 -0.18" scale="0.001 0.001 0.001" visible="false">
           <a-model src="models/compass.dae" position="0 0 0"></a-model>
@@ -61,7 +69,7 @@
         </a-entity>
       </a-entity>
 
-      <a-entity id="compass" position="0 0 3">
+      <a-entity id="compass" class="pickup" position="0 0 3">
         <a-model src="models/compass.dae" position="0 0 0" scale="0.02 0.02 0.02"></a-model>
         <a-entity geometry="primitive: plane; height: 0.3; width: 0.3" position="0 0.1 0" rotation="-90 0 0" material="transparent: true; opacity: 0"></a-entity>
       </a-entity>

@@ -1,9 +1,12 @@
 var containers = {};
 var map = null;
+var inventory = null;
 
 $(document).ready(function() {
     //load data from map
     loadMapData("map.json");
+
+    inventory = new Inventory();
 
     //map traversal
     $(".move").click(function() {
@@ -11,28 +14,38 @@ $(document).ready(function() {
         return false;
     });
 
-    $("#compass").click(function() {
-        var compass = $(this);
-        compass.remove();
-        $("#inv-compass").attr("visible","true");
+    $(".pickup").click(function() {
+        var item = $(this);
+        //inventory[item.attr("id")] = true;
+        inventory.addItem(item);
+        //ideally the additem function should take the dom object and the function
+        //will pull the attributes and recreate the item for injection - can then be generic
+
+        item.remove();
     });
 
-    //enter inventory room
+    //open inventory
     $("#inventory").click(function() {
         //seems to be a scaling issue where the new position does not equal 1.8 but is a small fraction over
-        if($("#player").attr("position").y > 1) {
-            document.querySelector('#player').emit('animate-player-scale-down');
-            $("#inventory-light").attr("visible","true");
-            document.querySelector('#inventory-light').emit('animate-player-scale-down');
+        if(!inventory.status) {
+            var inventory_slots = document.querySelectorAll('.inv-slot');
+            for(var x=0; x<inventory_slots.length; x++) {
+                inventory_slots[x].emit('animate-inventory');
+            }
+            inventory.status = true;
+            //render inventory
         }
         return false;
     });
 
-    //exit inventory room
+    //close inventory
     $("#exit-inventory").click(function() {
-        if($("#player").attr("position").y < 1) {
-            document.querySelector('#player').emit('animate-player-scale-up');
-            $("#inventory-light").attr("visible","false");
+        if(inventory.status) {
+            var inventory_slots = document.querySelectorAll('.inv-slot');
+            for(var x=0; x<inventory_slots.length; x++) {
+                inventory_slots[x].emit('animate-inventory-close');
+            }
+            inventory.status = false;
         }
         return false;
     });
@@ -165,6 +178,31 @@ Container.prototype.render = function() {
 //Room Entity
 function Room(data) {
     this.data = data;
+}
+
+//Inventory Entity
+function Inventory() {
+    this.items = {};
+    this.slots = {1 : null, 2 : null, 3 : null, 4 : null};
+    this.active = false;
+}
+
+Inventory.prototype.addItem = function(item) {
+    this.items[item.attr("id")] = true;
+    console.log(this.items);
+    //inject into dom
+    var entity = item.clone();
+    entity.attr("position","0 0 0");
+    entity.attr("rotation","90 0 0");
+    entity.attr("visible","false");
+    //remove the pickup class
+    entity.attr("class","");
+    $("#inv-slot-1").append(entity);
+}
+
+Inventory.prototype.render = function() {
+    //set the attribute as visible for each slot
+    
 }
 
 function loadMapData(map_name) {
