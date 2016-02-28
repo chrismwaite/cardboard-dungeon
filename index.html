@@ -31,8 +31,11 @@
           <a-entity id="cursor" position="0 0 -1" geometry="primitive: ring; radiusOuter: 0.016; radiusInner: 0.01" material="color: #FFF;" cursor="fuse: true; maxDistance: 8">
             <a-animation begin="fusing" easing="ease" attribute="scale" fill="none" from="1 1 1" to="0 0 0" dur="1500"></a-animation>
           </a-entity>
-          <!-- compass -->
-          <!--<a-model look-controls="enabled: false" src="models/compass_case2.dae" position="-0.6 -0.6 -0.65" rotation="-10 45 0" scale="0.05 0.05 0.05"></a-model>-->
+
+          <!-- items -->
+          <a-model id="player-compass" visible="false" look-controls="enabled: false" src="models/compass.dae" position="-0.6 -0.8 -0.8" rotation="40 0 -40" scale="0.04 0.04 0.04"></a-model>
+
+          <a-model id="player-sword" visible="false" look-controls="enabled: false" src="models/sword.dae" position="0.7 -0.5 -1.2" rotation="50 0 60" scale="0.08 0.08 0.08"></a-model>
         </a-entity>
 
         <!-- animations -->
@@ -43,27 +46,34 @@
       </a-entity>
 
       <!-- inventory -->
-      <a-entity id="inventory" position="0 0.5 4">
-        <a-entity id="inventory-light" visible="true" light="type: point; intensity: 0; distance: 45; decay: 2" position="0 3 0">
-          <a-animation begin="animate-player-scale-down" easing="ease" attribute="light.intensity" fill="forwards" from="0" to="1.8" dur="1500"></a-animation>
+      <a-entity id="inventory" position="0 0.1 4">
+        <a-entity id="inv-slot-1" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0 0 0" material="color: #FF69B4">
+          <a-animation begin="animate-inventory" easing="ease" attribute="position" fill="forwards" from="0 0 0" to="0 0 -0.5" dur="1500"></a-animation>
+          <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="0 0 -0.5" to="0 0 0" dur="1500"></a-animation>
         </a-entity>
-        <a-entity geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" material="color: #FF69B4"></a-entity>
-        <a-entity geometry="primitive: plane; height: 0.5; width: 0.5" position="0 0.25 -0.25" material="color: #FF69B4"></a-entity>
-        <a-entity geometry="primitive: plane; height: 0.5; width: 0.5" rotation="0 90 0" position="-0.25 0.25 0" material="color: #FF69B4"></a-entity>
-        <a-entity geometry="primitive: plane; height: 0.5; width: 0.5" rotation="0 -90 0" position="0.25 0.25 0" material="color: #FF69B4"></a-entity>
-        <a-entity geometry="primitive: plane; height: 0.5; width: 0.5" position="0 0.25 0.25" material="side:double; color: #FF69B4"></a-entity>
-        <a-entity id="exit-inventory" geometry="primitive: box; height: 0.05; width: 0.05; depth: 0.05" position="-0.2 0.025 -0.2" material="color: #FFFFFF"></a-entity>
-        <a-model src="models/table.dae" position="0 0 -0.2" scale="0.005 0.005 0.005"></a-model>
-        <!-- items -->
-        <a-entity id="inv-compass" position="-0.02 0.075 -0.18" scale="0.001 0.001 0.001" visible="false">
-          <a-model src="models/compass.dae" position="0 0 0"></a-model>
-          <a-entity geometry="primitive: plane; height: 20; width: 20" position="0 4.1 0" rotation="-90 0 0" material="transparent: true; opacity: 0"></a-entity>
+        <a-entity id="inv-slot-2" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0 0 0" material="color: #FF69B4">
+          <a-animation begin="animate-inventory" easing="ease" attribute="position" fill="forwards" from="0 0 0" to="0 0 0.5" dur="1500"></a-animation>
+          <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="0 0 0.5" to="0 0 0" dur="1500"></a-animation>
         </a-entity>
+        <a-entity id="inv-slot-3" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0 0 0" material="color: #FF69B4">
+          <a-animation begin="animate-inventory" easing="ease" attribute="position" fill="forwards" from="0 0 0" to="-0.5 0 0" dur="1500"></a-animation>
+          <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="-0.5 0 0" to="0 0 0" dur="1500"></a-animation>
+        </a-entity>
+        <a-entity id="inv-slot-4" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0 0 0" material="color: #FF69B4">
+          <a-animation begin="animate-inventory" easing="ease" attribute="position" fill="forwards" from="0 0 0" to="0.5 0 0" dur="1500"></a-animation>
+          <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="0.5 0 0" to="0 0 0" dur="1500"></a-animation>
+        </a-entity>
+        <a-entity id="exit-inventory" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0 0 0" material="color: #FF69B4"></a-entity>
       </a-entity>
 
-      <a-entity id="compass" position="0 0 3">
+      <a-entity id="compass" class="pickup" position="0 0 3">
         <a-model src="models/compass.dae" position="0 0 0" scale="0.02 0.02 0.02"></a-model>
         <a-entity geometry="primitive: plane; height: 0.3; width: 0.3" position="0 0.1 0" rotation="-90 0 0" material="transparent: true; opacity: 0"></a-entity>
+      </a-entity>
+
+      <a-entity id="sword" class="pickup" position="1 0 3">
+        <a-model src="models/sword.dae" position="0 0 0" scale="0.05 0.05 0.05"></a-model>
+        <a-entity geometry="primitive: plane; height: 0.7; width: 0.4" position="0 0.2 0.05" rotation="-90 0 0" material="color:red"></a-entity>
       </a-entity>
 
       <!-- ground floor -->

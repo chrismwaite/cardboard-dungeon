@@ -1,9 +1,12 @@
 var containers = {};
 var map = null;
+var inventory = null;
 
 $(document).ready(function() {
     //load data from map
     loadMapData("map.json");
+
+    inventory = new Inventory();
 
     //map traversal
     $(".move").click(function() {
@@ -11,28 +14,35 @@ $(document).ready(function() {
         return false;
     });
 
-    $("#compass").click(function() {
-        var compass = $(this);
-        compass.remove();
-        $("#inv-compass").attr("visible","true");
+    $(".pickup").click(function() {
+        var item = $(this);
+        inventory.addItem(item);
+        item.remove();
+        return false;
     });
 
-    //enter inventory room
+    //open inventory
     $("#inventory").click(function() {
-        //seems to be a scaling issue where the new position does not equal 1.8 but is a small fraction over
-        if($("#player").attr("position").y > 1) {
-            document.querySelector('#player').emit('animate-player-scale-down');
-            $("#inventory-light").attr("visible","true");
-            document.querySelector('#inventory-light').emit('animate-player-scale-down');
+        if(!inventory.active) {
+            var inventory_slots = document.querySelectorAll('.inv-slot');
+            for(var x=0; x<inventory_slots.length; x++) {
+                inventory_slots[x].emit('animate-inventory');
+            }
+            inventory.active = true;
+            inventory.render();
         }
         return false;
     });
 
-    //exit inventory room
+    //close inventory
     $("#exit-inventory").click(function() {
-        if($("#player").attr("position").y < 1) {
-            document.querySelector('#player').emit('animate-player-scale-up');
-            $("#inventory-light").attr("visible","false");
+        if(inventory.active) {
+            var inventory_slots = document.querySelectorAll('.inv-slot');
+            for(var x=0; x<inventory_slots.length; x++) {
+                inventory_slots[x].emit('animate-inventory-close');
+            }
+            inventory.active = false;
+            inventory.render();
         }
         return false;
     });
@@ -165,6 +175,57 @@ Container.prototype.render = function() {
 //Room Entity
 function Room(data) {
     this.data = data;
+}
+
+//Inventory Entity
+function Inventory() {
+    this.items = {};
+    this.slots = {1 : null, 2 : null, 3 : null, 4 : null};
+    this.active = false;
+}
+
+Inventory.prototype.addItem = function(item) {
+    this.items[item.attr("id")] = true;
+
+    var slot_target = null;
+
+    for(var key in this.slots) {
+        if(this.slots[key] == null) {
+            this.slots[key] = item.attr("id");
+            slot_target = key;
+            break;
+        }
+    }
+
+    //create a clone of the item and inject it into the target slot
+    var entity = item.clone();
+    entity.attr("position","0 0 0");
+    entity.attr("rotation","90 0 0");
+    entity.attr("visible","false");
+    //set the class to be usable
+    entity.attr("class","usable");
+    $("#inv-slot-" + slot_target).append(entity);
+    $(entity).click(function() {
+        var player_item_id = ("#player-" + $(this).attr("id"));
+        if($(player_item_id).attr("visible") == false) {
+            $(player_item_id).attr("visible","true");
+        }
+        else {
+            $(player_item_id).attr("visible","false");
+        }
+    });
+}
+
+Inventory.prototype.render = function() {
+    //set the attribute as visible for each slot
+    for(var key in this.items) {
+        if(this.active) {
+            $('#' + key).attr("visible","true");
+        }
+        else {
+            $('#' + key).attr("visible","false");
+        }
+    }
 }
 
 function loadMapData(map_name) {
