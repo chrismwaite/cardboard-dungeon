@@ -14,13 +14,6 @@ $(document).ready(function() {
         return false;
     });
 
-    $(".pickup").click(function() {
-        var item = $(this);
-        inventory.addItem(item);
-        item.remove();
-        return false;
-    });
-
     //open inventory
     $("#inventory").click(function() {
         if(!inventory.active) {
@@ -79,11 +72,20 @@ function move(dom_element) {
         {
             containers[key].room = new Room(map[new_room_key].data);
             containers[key].room_id = new_room_key;
+            //remove any existing item data
+            containers[key].removeItems();
+            //add item if it exists in the new room data
+            if(map[new_room_key].item) {
+                //console.log("Adding item for room key " + new_room_key + " in container " + key);
+                containers[key].addItem(map[new_room_key].item);
+            }
             containers[key].render();
         }
         else {
             containers[key].room = null;
             containers[key].room_id = new_room_key;
+            //remove any existing item data
+            containers[key].removeItems();
             containers[key].render();
         }
     }
@@ -170,6 +172,45 @@ Container.prototype.render = function() {
         $(this.target).find(".front").attr("visible","false");
         $(this.target).find(".move").attr("visible","false");
     }
+}
+
+Container.prototype.addItem = function(item) {
+    var entity = document.createElement("a-entity");
+    entity.setAttribute("id",item);
+    entity.setAttribute("class","pickup");
+    entity.setAttribute("position",this.position_multipliers.x + " " + this.position_multipliers.y + " " + (this.position_multipliers.z - 1));
+    //assign the room id to the entity for easy removal later on
+    entity.setAttribute("room-id",this.room_id);
+
+    var model = document.createElement("a-model");
+    model.setAttribute("src","models/" + item + ".dae");
+    model.setAttribute("position","0 0 0");
+    model.setAttribute("mixin",item + "-model");
+
+    var trigger = document.createElement("a-entity");
+    trigger.setAttribute("mixin",item + "-trigger");
+    trigger.setAttribute("material","transparent: true; opacity: 0");
+
+    entity.appendChild(model);
+    entity.appendChild(trigger);
+
+    $(this.target).append(entity);
+
+    //add click even for item pickup
+    $(entity).click(function() {
+        var item = $(this);
+        inventory.addItem(item);
+        item.remove();
+        //remove item from the json data
+        map[item.attr("room-id")].item = null;
+        //map[room id].item == null;
+        return false;
+    });
+}
+
+Container.prototype.removeItems = function() {
+    //console.log("Removing " + this.item + " for room key " + this.room_id  + " in container " + this.target);
+    $(this.target).find($(".pickup")).remove();
 }
 
 //Room Entity
@@ -282,6 +323,10 @@ function loadMapData(map_name) {
 
         //render the room data for the containers
         for (var key in containers) {
+            //add items for visible rooms if they exist
+            if(map[containers[key].room_id] && map[containers[key].room_id].item) {
+                containers[key].addItem(map[containers[key].room_id].item);
+            }
             containers[key].render();
         }
     });

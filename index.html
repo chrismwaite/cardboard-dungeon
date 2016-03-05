@@ -19,6 +19,10 @@
       <a-mixin id="back" rotation="0 0 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
       <a-mixin id="front" rotation="180 0 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
       <a-mixin id="move" geometry="primitive: sphere; radius: 0.25;" material="color: #0000ff; opacity: 1"></a-mixin>
+      <a-mixin id="compass-model" scale="0.02 0.02 0.02"></a-mixin>
+      <a-mixin id="compass-trigger" geometry="primitive: plane; height: 0.3; width: 0.3" position="0 0.1 0" rotation="-90 0 0"></a-mixin>
+      <a-mixin id="sword-model" scale="0.05 0.05 0.05"></a-mixin>
+      <a-mixin id="sword-trigger" geometry="primitive: plane; height: 0.7; width: 0.4" position="0 0.2 0.05" rotation="-90 0 0"></a-mixin>
       <img id="texture-stone" src="stone_wall.png?v=2">
       <img id="texture-straw" src="stone_floor_brown.png?v=2">
       <img id="texture-stone-roof" src="stone_ceiling.png?v=2">
@@ -37,12 +41,6 @@
 
           <a-model id="player-sword" visible="false" look-controls="enabled: false" src="models/sword.dae" position="0.7 -0.5 -1.2" rotation="50 0 60" scale="0.08 0.08 0.08"></a-model>
         </a-entity>
-
-        <!-- animations -->
-        <a-animation begin="animate-player-scale-down" easing="ease" attribute="scale" fill="forwards" from="1 1 1" to="0.1 0.1 0.1" dur="1500"></a-animation>
-        <a-animation begin="animate-player-scale-down" easing="ease" attribute="position" fill="forwards" from="0 1.8 4" to="0 0.64 4" dur="1500"></a-animation>
-        <a-animation begin="animate-player-scale-up" easing="ease" attribute="scale" fill="forwards" from="0.1 0.1 0.1" to="1 1 1" dur="1500"></a-animation>
-        <a-animation begin="animate-player-scale-up" easing="ease" attribute="position" fill="forwards" from="0 0.64 4" to="0 1.8 4" dur="1500"></a-animation>
       </a-entity>
 
       <!-- inventory -->
@@ -64,16 +62,6 @@
           <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="0.5 0 0" to="0 0 0" dur="1500"></a-animation>
         </a-entity>
         <a-entity id="exit-inventory" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0 0 0" material="color: #FF69B4"></a-entity>
-      </a-entity>
-
-      <a-entity id="compass" class="pickup" position="0 0 3">
-        <a-model src="models/compass.dae" position="0 0 0" scale="0.02 0.02 0.02"></a-model>
-        <a-entity geometry="primitive: plane; height: 0.3; width: 0.3" position="0 0.1 0" rotation="-90 0 0" material="transparent: true; opacity: 0"></a-entity>
-      </a-entity>
-
-      <a-entity id="sword" class="pickup" position="1 0 3">
-        <a-model src="models/sword.dae" position="0 0 0" scale="0.05 0.05 0.05"></a-model>
-        <a-entity geometry="primitive: plane; height: 0.7; width: 0.4" position="0 0.2 0.05" rotation="-90 0 0" material="transparent: true; opacity: 0"></a-entity>
       </a-entity>
 
       <!-- ground floor -->
