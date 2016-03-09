@@ -242,19 +242,33 @@ Inventory.prototype.addItem = function(item) {
     var entity = item.clone();
     entity.attr("position","0 0 0");
     entity.attr("rotation","90 0 0");
-    entity.attr("visible","false");
-    //set the class to be usable
-    entity.attr("class","usable");
-    $("#inv-slot-" + slot_target).append(entity);
-    $(entity).click(function() {
-        var player_item_id = ("#player-" + $(this).attr("id"));
-        if($(player_item_id).attr("visible") == false) {
-            $(player_item_id).attr("visible","true");
-        }
-        else {
-            $(player_item_id).attr("visible","false");
-        }
-    });
+    if(this.active == false) {
+        entity.attr("visible","false");
+    }
+    
+    //if its the compass, add it to the center and remove the trigger
+    if(item.attr("id") == "compass") {
+        $(entity).find("a-entity").remove();
+        $("#exit-inventory").append(entity);
+    }
+    else {
+        //set the class to be usable
+        entity.attr("class","usable");
+        $("#inv-slot-" + slot_target).append(entity);
+    }
+    
+    //apply the usable trigger only if the item isn't the compass
+    if(item.attr("id") != "compass") {
+        $(entity).click(function() {
+            var player_item_id = ("#player-" + $(this).attr("id"));
+            if($(player_item_id).attr("visible") == false) {
+                $(player_item_id).attr("visible","true");
+            }
+            else {
+                $(player_item_id).attr("visible","false");
+            }
+        });
+    }
 }
 
 Inventory.prototype.render = function() {
