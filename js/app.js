@@ -14,20 +14,7 @@ $(document).ready(function() {
         return false;
     });
 
-    //open inventory
-    $("#inventory").click(function() {
-        if(!inventory.active) {
-            var inventory_slots = document.querySelectorAll('.inv-slot');
-            for(var x=0; x<inventory_slots.length; x++) {
-                inventory_slots[x].emit('animate-inventory');
-            }
-            inventory.active = true;
-            inventory.render();
-        }
-        return false;
-    });
-
-    //close inventory
+    //open inventory/close inventory
     $("#compass").click(function() {
         if(inventory.active) {
             var inventory_slots = document.querySelectorAll('.inv-slot');
@@ -35,6 +22,14 @@ $(document).ready(function() {
                 inventory_slots[x].emit('animate-inventory-close');
             }
             inventory.active = false;
+            inventory.render();
+        }
+        else if(!inventory.active) {
+            var inventory_slots = document.querySelectorAll('.inv-slot');
+            for(var x=0; x<inventory_slots.length; x++) {
+                inventory_slots[x].emit('animate-inventory');
+            }
+            inventory.active = true;
             inventory.render();
         }
         return false;
