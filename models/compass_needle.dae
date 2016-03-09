@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.76.0 commit date:2015-11-03, commit time:10:56, hash:f337fea</authoring_tool>
+    </contributor>
+    <created>2016-03-09T19:30:55</created>
+    <modified>2016-03-09T19:30:55</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_cameras>
+    <camera id="Camera-camera" name="Camera">
+      <optics>
+        <technique_common>
+          <perspective>
+            <xfov sid="xfov">49.13434</xfov>
+            <aspect_ratio>1.777778</aspect_ratio>
+            <znear sid="znear">0.1</znear>
+            <zfar sid="zfar">100</zfar>
+          </perspective>
+        </technique_common>
+      </optics>
+      <extra>
+        <technique profile="blender">
+          <YF_dofdist>0</YF_dofdist>
+          <shiftx>0</shiftx>
+          <shifty>0</shifty>
+        </technique>
+      </extra>
+    </camera>
+  </library_cameras>
+  <library_images>
+    <image id="compass_needle_png" name="compass_needle_png">
+      <init_from>compass_needle.png</init_from>
+    </image>
+  </library_images>
+  <library_effects>
+    <effect id="palette-effect">
+      <profile_COMMON>
+        <newparam sid="compass_needle_png-surface">
+          <surface type="2D">
+            <init_from>compass_needle_png</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="compass_needle_png-sampler">
+          <sampler2D>
+            <source>compass_needle_png-surface</source>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <texture texture="compass_needle_png-sampler" texcoord="UVMap"/>
+            </diffuse>
+            <specular>
+              <color sid="specular">0 0 0 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="palette-material" name="palette">
+      <instance_effect url="#palette-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="compass_needle-mesh" name="compass_needle">
+      <mesh>
+        <source id="compass_needle-mesh-positions">
+          <float_array id="compass_needle-mesh-positions-array" count="96">-1 1 5 -1 0 -4 -1 0 5 -1 1 -4 -1 0 -5 -1 1 -5 1 0 5 1 0 -4 1 1 5 1 0 -5 1 1 -4 1 1 -5 1 0 5 -1 1 5 -1 0 5 1 1 5 -1 0 -5 -1 1 -5 1 0 -5 1 1 -5 -1 0 -4 1 0 5 -1 0 5 1 0 -4 -1 0 -5 1 0 -5 -1 1 5 1 1 5 -1 1 -4 1 1 -4 -1 1 -5 1 1 -5</float_array>
+          <technique_common>
+            <accessor source="#compass_needle-mesh-positions-array" count="32" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="compass_needle-mesh-normals">
+          <float_array id="compass_needle-mesh-normals-array" count="18">-1 0 0 1 0 0 0 0 1 0 0 -1 0 -1 0 0 1 0</float_array>
+          <technique_common>
+            <accessor source="#compass_needle-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="compass_needle-mesh-map-0">
+          <float_array id="compass_needle-mesh-map-0-array" count="120">0.986328 0.5 0.986328 0.5 0.986328 0.5 0.849609 0.5 0.849609 0.5 0.849609 0.5 0.986328 0.5 0.986328 0.5 0.986328 0.5 0.849609 0.5 0.849609 0.5 0.849609 0.5 0.986328 0.5 0.986328 0.5 0.986328 0.5 0.849609 0.5 0.849609 0.5 0.849609 0.5 0.986328 0.5 0.986328 0.5 0.986328 0.5 0.849609 0.5 0.849609 0.5 0.849609 0.5 0.986328 0.5 0.986328 0.5 0.986328 0.5 0.986328 0.5 0.986328 0.5 0.986328 0.5 0.849609 0.5 0.849609 0.5 0.849609 0.5 0.849609 0.5 0.849609 0.5 0.849609 0.5 0.986328 0.5 0.986328 0.5 0.986328 0.5 0.986328 0.5 0.986328 0.5 0.986328 0.5 0.849609 0.5 0.849609 0.5 0.849609 0.5 0.849609 0.5 0.849609 0.5 0.849609 0.5 0.986328 0.5 0.986328 0.5 0.986328 0.5 0.986328 0.5 0.986328 0.5 0.986328 0.5 0.849609 0.5 0.849609 0.5 0.849609 0.5 0.849609 0.5 0.849609 0.5 0.849609 0.5</float_array>
+          <technique_common>
+            <accessor source="#compass_needle-mesh-map-0-array" count="60" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="compass_needle-mesh-vertices">
+          <input semantic="POSITION" source="#compass_needle-mesh-positions"/>
+        </vertices>
+        <polylist material="palette-material" count="20">
+          <input semantic="VERTEX" source="#compass_needle-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#compass_needle-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#compass_needle-mesh-map-0" offset="2" set="0"/>
+          <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 </vcount>
+          <p>0 0 0 1 0 1 2 0 2 3 0 3 4 0 4 1 0 5 3 0 6 1 0 7 0 0 8 5 0 9 4 0 10 3 0 11 6 1 12 7 1 13 8 1 14 7 1 15 9 1 16 10 1 17 8 1 18 7 1 19 10 1 20 10 1 21 9 1 22 11 1 23 12 2 24 13 2 25 14 2 26 15 2 27 13 2 28 12 2 29 16 3 30 17 3 31 18 3 32 18 3 33 17 3 34 19 3 35 20 4 36 21 4 37 22 4 38 23 4 39 21 4 40 20 4 41 24 4 42 23 4 43 20 4 44 25 4 45 23 4 46 24 4 47 26 5 48 27 5 49 28 5 50 28 5 51 27 5 52 29 5 53 28 5 54 29 5 55 30 5 56 30 5 57 29 5 58 31 5 59</p>
+        </polylist>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Camera" name="Camera" type="NODE">
+        <matrix sid="transform">0.6858805 -0.3173701 0.6548619 7.481132 0.7276338 0.3124686 -0.6106656 -6.50764 -0.01081678 0.8953432 0.4452454 5.343665 0 0 0 1</matrix>
+        <instance_camera url="#Camera-camera"/>
+      </node>
+      <node id="compass_needle" name="compass_needle" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 -1.62921e-7 -1 0 0 1 -1.62921e-7 0 0 0 0 1</matrix>
+        <instance_geometry url="#compass_needle-mesh" name="compass_needle">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="palette-material" target="#palette-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

@@ -15,8 +15,7 @@
 		"data":{"top":true,"bottom":true,"left":true,"right":false,"back":true,"front":true}
 	},
 	"0,0,0":{
-		"data":{"top":true,"bottom":true,"left":false,"right":false,"back":false,"front":false},
-		"item":"compass"
+		"data":{"top":true,"bottom":true,"left":false,"right":false,"back":false,"front":false}
 	},
 	"1,0,0":{
 		"data":{"top":true,"bottom":true,"left":false,"right":true,"back":true,"front":true}

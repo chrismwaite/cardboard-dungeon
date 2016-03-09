@@ -19,8 +19,6 @@
       <a-mixin id="back" rotation="0 0 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
       <a-mixin id="front" rotation="180 0 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
       <a-mixin id="move" geometry="primitive: sphere; radius: 0.25;" material="color: #0000ff; opacity: 1"></a-mixin>
-      <a-mixin id="compass-model" scale="0.02 0.02 0.02"></a-mixin>
-      <a-mixin id="compass-trigger" geometry="primitive: plane; height: 0.3; width: 0.3" position="0 0.1 0" rotation="-90 0 0"></a-mixin>
       <a-mixin id="sword-model" scale="0.05 0.05 0.05"></a-mixin>
       <a-mixin id="sword-trigger" geometry="primitive: plane; height: 0.7; width: 0.4" position="0 0.2 0.05" rotation="-90 0 0"></a-mixin>
       <img id="texture-stone" src="stone_wall.png?v=2">
@@ -61,7 +59,10 @@
           <a-animation begin="animate-inventory" easing="ease" attribute="position" fill="forwards" from="0 0 0" to="0.5 0 0" dur="1500"></a-animation>
           <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="0.5 0 0" to="0 0 0" dur="1500"></a-animation>
         </a-entity>
-        <a-entity id="exit-inventory" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0 0 0" material="color: #8B5742; transparent: true; opacity: 0.6"></a-entity>
+        <a-entity id="compass">
+          <a-entity look-controls geometry="primitive: box; height: 0.3; width: 0.3; depth: 0.05" material="color: #FCB514" position="0 0.1 0"></a-entity>
+          <a-model src="models/compass_needle.dae" scale="0.02 0.02 0.02" position="0 0.2 0"></a-model>
+        </a-entity>
       </a-entity>
 
       <!-- ground floor -->
