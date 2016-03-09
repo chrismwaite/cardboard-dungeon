@@ -22,7 +22,7 @@ $(document).ready(function() {
                 inventory_slots[x].emit('animate-inventory-close');
             }
             inventory.active = false;
-            inventory.render();
+            setTimeout(renderInventory, 1500);
         }
         else if(!inventory.active) {
             var inventory_slots = document.querySelectorAll('.inv-slot');
@@ -30,11 +30,15 @@ $(document).ready(function() {
                 inventory_slots[x].emit('animate-inventory');
             }
             inventory.active = true;
-            inventory.render();
+            setTimeout(renderInventory, 1500);
         }
         return false;
     });
 });
+
+function renderInventory() {
+    inventory.render();
+}
 
 //click events
 function move(dom_element) {
@@ -198,7 +202,6 @@ Container.prototype.addItem = function(item) {
         item.remove();
         //remove item from the json data
         map[item.attr("room-id")].item = null;
-        //map[room id].item == null;
         return false;
     });
 }
@@ -237,6 +240,7 @@ Inventory.prototype.addItem = function(item) {
     var entity = item.clone();
     entity.attr("position","0 0 0");
     entity.attr("rotation","90 0 0");
+    entity.attr("scale","0.5 0.5 0.5");
     if(this.active == false) {
         entity.attr("visible","false");
     }

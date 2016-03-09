@@ -35,29 +35,27 @@
           </a-entity>
 
           <!-- items -->
-          <a-model id="player-compass" visible="false" look-controls="enabled: false" src="models/compass.dae" position="-0.6 -0.8 -0.8" rotation="40 0 -40" scale="0.04 0.04 0.04"></a-model>
-
           <a-model id="player-sword" visible="false" look-controls="enabled: false" src="models/sword.dae" position="0.7 -0.5 -1.2" rotation="50 0 60" scale="0.08 0.08 0.08"></a-model>
         </a-entity>
       </a-entity>
 
       <!-- inventory -->
       <a-entity id="inventory" position="0 0.1 4">
-        <a-entity id="inv-slot-1" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0 0 0" material="color: #8B5742; transparent: true; opacity: 0.6">
-          <a-animation begin="animate-inventory" easing="ease" attribute="position" fill="forwards" from="0 0 0" to="0 0 -0.5" dur="1500"></a-animation>
-          <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="0 0 -0.5" to="0 0 0" dur="1500"></a-animation>
+        <a-entity id="inv-slot-1" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0 0 -0.25" material="color: #8B5742; transparent: true; opacity: 0.6">
+          <a-animation begin="animate-inventory" easing="ease" attribute="position" fill="forwards" from="0 0 -0.25" to="0 0 -0.5" dur="1500"></a-animation>
+          <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="0 0 -0.5" to="0 0 -0.25" dur="1500"></a-animation>
         </a-entity>
-        <a-entity id="inv-slot-2" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0 0 0" material="color: #8B5742; transparent: true; opacity: 0.6">
-          <a-animation begin="animate-inventory" easing="ease" attribute="position" fill="forwards" from="0 0 0" to="0 0 0.5" dur="1500"></a-animation>
-          <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="0 0 0.5" to="0 0 0" dur="1500"></a-animation>
+        <a-entity id="inv-slot-2" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0 0 0.25" material="color: #8B5742; transparent: true; opacity: 0.6">
+          <a-animation begin="animate-inventory" easing="ease" attribute="position" fill="forwards" from="0 0 0.25" to="0 0 0.5" dur="1500"></a-animation>
+          <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="0 0 0.5" to="0 0 0.25" dur="1500"></a-animation>
         </a-entity>
-        <a-entity id="inv-slot-3" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0 0 0" material="color: #8B5742; transparent: true; opacity: 0.6">
-          <a-animation begin="animate-inventory" easing="ease" attribute="position" fill="forwards" from="0 0 0" to="-0.5 0 0" dur="1500"></a-animation>
-          <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="-0.5 0 0" to="0 0 0" dur="1500"></a-animation>
+        <a-entity id="inv-slot-3" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="-0.25 0 0" material="color: #8B5742; transparent: true; opacity: 0.6">
+          <a-animation begin="animate-inventory" easing="ease" attribute="position" fill="forwards" from="-0.25 0 0" to="-0.5 0 0" dur="1500"></a-animation>
+          <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="-0.5 0 0" to="-0.25 0 0" dur="1500"></a-animation>
         </a-entity>
-        <a-entity id="inv-slot-4" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0 0 0" material="color: #8B5742; transparent: true; opacity: 0.6">
-          <a-animation begin="animate-inventory" easing="ease" attribute="position" fill="forwards" from="0 0 0" to="0.5 0 0" dur="1500"></a-animation>
-          <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="0.5 0 0" to="0 0 0" dur="1500"></a-animation>
+        <a-entity id="inv-slot-4" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0.25 0 0" material="color: #8B5742; transparent: true; opacity: 0.6">
+          <a-animation begin="animate-inventory" easing="ease" attribute="position" fill="forwards" from="0.25 0 0" to="0.5 0 0" dur="1500"></a-animation>
+          <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="0.5 0 0" to="0.25 0 0" dur="1500"></a-animation>
         </a-entity>
         <a-entity id="compass">
           <a-entity look-controls geometry="primitive: box; height: 0.3; width: 0.3; depth: 0.05" material="color: #FCB514" position="0 0.1 0"></a-entity>
