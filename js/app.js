@@ -14,6 +14,24 @@ $(document).ready(function() {
         return false;
     });
 
+    //item pickups where preloaded in scene
+    $(".pickup").click(function() {
+        var item = $(this);
+        inventory.addItem(item);
+        item.remove();
+        return false;
+    });
+
+    //enter the dungeon if the key is in the players hand
+    $("#entrance-trigger").click(function() {
+        if(inventory.itemOwnedAndInHand("key")) {
+            $("#player").attr("position","0 1.8 4");
+            $("#inventory").attr("position","0 0.1 4");
+            $("#tutorial").attr("visible","false");
+        }
+        return false;
+    });
+
     //open inventory/close inventory
     $("#compass").click(function() {
         if(inventory.active) {
@@ -257,6 +275,14 @@ Inventory.prototype.addItem = function(item) {
             $(player_item_id).attr("visible","false");
         }
     });
+}
+
+Inventory.prototype.itemOwnedAndInHand = function(item_id) {
+    var item = ("#player-" + item_id);
+    if(this.items[item_id] && $(item).attr("visible") == true) {
+        return true;
+    }
+    return false;
 }
 
 Inventory.prototype.render = function() {

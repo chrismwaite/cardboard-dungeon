@@ -14,52 +14,84 @@
       <a-mixin id="wall" geometry="primitive: plane; height: 4; width: 4"></a-mixin>
       <a-mixin id="top" rotation="90 0 0" material="src: #texture-stone-roof; repeat:2 2"></a-mixin>
       <a-mixin id="bottom" rotation="-90 0 0" material="src: #texture-straw; repeat: 2 2"></a-mixin>
+      <a-mixin id="bottom-outside" rotation="-90 0 0" material="src: #texture-grass; repeat: 2 2"></a-mixin>
       <a-mixin id="right" rotation="0 -90 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
       <a-mixin id="left" rotation="0 90 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
       <a-mixin id="back" rotation="0 0 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
+      <a-mixin id="back-outside" rotation="0 0 0" material="src: #texture-stone2; repeat: 2 2"></a-mixin>
       <a-mixin id="front" rotation="180 0 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
       <a-mixin id="move" geometry="primitive: sphere; radius: 0.25;" material="color: #0000ff; opacity: 1"></a-mixin>
       <a-mixin id="sword-model" scale="0.05 0.05 0.05"></a-mixin>
       <a-mixin id="sword-trigger" geometry="primitive: plane; height: 0.7; width: 0.4" position="0 0.2 0.05" rotation="-90 0 0"></a-mixin>
+      <a-mixin id="key-model" scale="0.05 0.05 0.05"></a-mixin>
+      <a-mixin id="key-trigger" geometry="primitive: plane; height: 0.7; width: 0.4" position="0 0.2 0.05" rotation="-90 0 0"></a-mixin>
       <img id="texture-stone" src="stone_wall.png?v=2">
+      <img id="texture-stone2" src="stone_wall2.png?v=1">
       <img id="texture-straw" src="stone_floor_brown.png?v=2">
       <img id="texture-stone-roof" src="stone_ceiling.png?v=2">
+      <img id="texture-grass" src="grass.png?v=1">
     </a-assets>
     <a-scene>
       <!-- player -->
-      <a-entity id="player" position="0 1.8 4">
+      <a-entity id="player" position="0 9.8 4">
         <a-entity light="type: point; intensity: 1.5; distance: 17; decay: 4" position="0 0 0"></a-entity>
-        <a-entity camera look-controls wasd-controls="enabled: false">
+        <a-entity camera look-controls wasd-controls="enabled: true">
           <a-entity id="cursor" position="0 0 -1" geometry="primitive: ring; radiusOuter: 0.016; radiusInner: 0.01" material="color: #FFF;" cursor="fuse: true; maxDistance: 8">
             <a-animation begin="fusing" easing="ease" attribute="scale" fill="none" from="1 1 1" to="0 0 0" dur="1500"></a-animation>
           </a-entity>
 
           <!-- items -->
           <a-model id="player-sword" visible="false" look-controls="enabled: false" src="models/sword.dae" position="0.7 -0.5 -1.2" rotation="50 0 60" scale="0.08 0.08 0.08"></a-model>
+          <a-model id="player-key" visible="false" look-controls="enabled: false" src="models/key.dae" position="0.7 -0.5 -1.2" rotation="50 0 60" scale="0.08 0.08 0.08"></a-model>
         </a-entity>
       </a-entity>
 
       <!-- inventory -->
-      <a-entity id="inventory" position="0 0.1 4">
-        <a-entity id="inv-slot-1" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0 0 -0.25" material="color: #8B5742; transparent: true; opacity: 0.6">
-          <a-animation begin="animate-inventory" easing="ease" attribute="position" fill="forwards" from="0 0 -0.25" to="0 0 -0.5" dur="1500"></a-animation>
-          <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="0 0 -0.5" to="0 0 -0.25" dur="1500"></a-animation>
+      <a-entity id="inventory" position="0 8.1 4">
+        <a-entity id="inv-slot-1" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0 0.01 -0.25" material="color: #FFFFFF; transparent: true; opacity: 0.6">
+          <a-animation begin="animate-inventory" easing="ease" attribute="position" fill="forwards" from="0 0.01 -0.25" to="0 0.01 -0.5" dur="1500"></a-animation>
+          <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="0 0.01 -0.5" to="0 0.01 -0.25" dur="1500"></a-animation>
         </a-entity>
-        <a-entity id="inv-slot-2" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0 0 0.25" material="color: #8B5742; transparent: true; opacity: 0.6">
-          <a-animation begin="animate-inventory" easing="ease" attribute="position" fill="forwards" from="0 0 0.25" to="0 0 0.5" dur="1500"></a-animation>
-          <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="0 0 0.5" to="0 0 0.25" dur="1500"></a-animation>
+        <a-entity id="inv-slot-2" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0 0.01 0.25" material="color: #FFFFFF; transparent: true; opacity: 0.6">
+          <a-animation begin="animate-inventory" easing="ease" attribute="position" fill="forwards" from="0 0.01 0.25" to="0 0.01 0.5" dur="1500"></a-animation>
+          <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="0 0.01 0.5" to="0 0.01 0.25" dur="1500"></a-animation>
         </a-entity>
-        <a-entity id="inv-slot-3" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="-0.25 0 0" material="color: #8B5742; transparent: true; opacity: 0.6">
+        <a-entity id="inv-slot-3" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="-0.25 0 0" material="color: #FFFFFF; transparent: true; opacity: 0.6">
           <a-animation begin="animate-inventory" easing="ease" attribute="position" fill="forwards" from="-0.25 0 0" to="-0.5 0 0" dur="1500"></a-animation>
           <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="-0.5 0 0" to="-0.25 0 0" dur="1500"></a-animation>
         </a-entity>
-        <a-entity id="inv-slot-4" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0.25 0 0" material="color: #8B5742; transparent: true; opacity: 0.6">
+        <a-entity id="inv-slot-4" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0.25 0 0" material="color: #FFFFFF; transparent: true; opacity: 0.6">
           <a-animation begin="animate-inventory" easing="ease" attribute="position" fill="forwards" from="0.25 0 0" to="0.5 0 0" dur="1500"></a-animation>
           <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="0.5 0 0" to="0.25 0 0" dur="1500"></a-animation>
         </a-entity>
         <a-entity id="compass">
           <a-entity look-controls geometry="primitive: box; height: 0.3; width: 0.3; depth: 0.05" material="color: #FCB514" position="0 0.1 0"></a-entity>
           <a-model src="models/compass_needle.dae" scale="0.02 0.02 0.02" position="0 0.2 0"></a-model>
+        </a-entity>
+      </a-entity>
+
+      <!-- starting/tutorial area -->
+      <a-entity id="tutorial">
+        <a-entity light="type: point; intensity: 1.5; distance: 17; decay: 4" position="0 0 0"></a-entity>
+        <a-entity class="bottom" mixin="wall bottom-outside" visible="true" position="-4 8 4"></a-entity>
+        <a-entity class="bottom" mixin="wall bottom-outside" visible="true" position="0 8 4"></a-entity>
+        <a-entity class="bottom" mixin="wall bottom-outside" visible="true" position="4 8 4"></a-entity>
+        <a-entity class="bottom" mixin="wall bottom-outside" visible="true" position="-4 8 8"></a-entity>
+        <a-entity class="bottom" mixin="wall bottom-outside" visible="true" position="0 8 8"></a-entity>
+        <a-entity class="bottom" mixin="wall bottom-outside" visible="true" position="4 8 8"></a-entity>
+        <a-entity class="back" mixin="wall back-outside" visible="true" position="-4 10 2"></a-entity>
+        <a-entity class="back" mixin="wall back-outside" visible="true" position="0 10 2"></a-entity>
+        <a-model src="models/entrance.dae" scale="0.2 0.2 0.2" position="0 8 2.2"></a-model>
+        <a-entity id="entrance-trigger" geometry="primitive: plane; height: 2; width: 2" position="0 9.7 3" rotation="0 0 0" material="color: red"></a-entity>
+        <a-entity class="back" mixin="wall back-outside" visible="true" position="4 10 2"></a-entity>
+        <a-entity class="back" mixin="wall back-outside" visible="true" position="-4 14 2"></a-entity>
+        <a-entity class="back" mixin="wall back-outside" visible="true" position="0 14 2"></a-entity>
+        <a-entity class="back" mixin="wall back-outside" visible="true" position="4 14 2"></a-entity>
+
+        <!-- items -->
+        <a-entity id="key" class="pickup" position="0 8 6">
+          <a-model src="models/key.dae" position="0 0 0" mixin="key-model"></a-model>
+          <a-entity mixin="key-trigger" material="transparent: true; opacity: 0"></a-entity>
         </a-entity>
       </a-entity>
 
