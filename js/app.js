@@ -8,6 +8,11 @@ $(document).ready(function() {
 
     inventory = new Inventory();
 
+    //TEMP disable start area
+    $("#player").attr("position","0 1.8 4");
+    $("#inventory").attr("position","0 0.1 4");
+    $("#tutorial").attr("visible","false");
+
     //map traversal
     $(".move").click(function() {
         move(this);
