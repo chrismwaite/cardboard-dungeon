@@ -10,10 +10,10 @@ Cardboard Dungeon utilises the [A-Frame](https://aframe.io/) VR framework by Moz
 
 ## Setup
 
-1) Navigate to the [game](http://chrismwaite.github.io/cardboard-dungeon/) in your phone's web browser
-2) Tap the Google Cardboard icon in the bottom right
-3) Place your phone in your Google Cardboard headset
-4) Explore the dungeon!
+1. Navigate to the [game](http://chrismwaite.github.io/cardboard-dungeon/) in your phone's web browser
+2. Tap the Google Cardboard icon in the bottom right
+3. Place your phone in your Google Cardboard headset
+4. Explore the dungeon!
 
 ## How to play
 
