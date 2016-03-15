@@ -27,8 +27,7 @@
 		"data":{"top":true,"bottom":true,"left":false,"right":true,"back":false,"front":true}
 	},
 	"1,5,0":{
-		"data":{"top":true,"bottom":true,"left":true,"right":true,"back":false,"front":false},
-		"item":"sword"
+		"data":{"top":true,"bottom":true,"left":true,"right":true,"back":false,"front":false}
 	},
 	"1,6,0":{
 		"data":{"top":true,"bottom":true,"left":true,"right":false,"back":true,"front":false}
@@ -73,7 +72,8 @@
 		"data":{"top":false,"bottom":true,"left":true,"right":true,"back":false,"front":true}
 	},
 	"5,2,0":{
-		"data":{"top":true,"bottom":true,"left":true,"right":true,"back":false,"front":true}
+		"data":{"top":true,"bottom":true,"left":true,"right":true,"back":false,"front":true},
+		"item":"sword"
 	},
 	"3,9,0":{
 		"data":{"top":true,"bottom":true,"left":true,"right":true,"back":false,"front":false}
