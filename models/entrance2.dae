@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.76.0 commit date:2015-11-03, commit time:10:56, hash:f337fea</authoring_tool>
+    </contributor>
+    <created>2016-03-19T12:37:28</created>
+    <modified>2016-03-19T12:37:28</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_cameras>
+    <camera id="Camera-camera" name="Camera">
+      <optics>
+        <technique_common>
+          <perspective>
+            <xfov sid="xfov">49.13434</xfov>
+            <aspect_ratio>1.777778</aspect_ratio>
+            <znear sid="znear">0.1</znear>
+            <zfar sid="zfar">100</zfar>
+          </perspective>
+        </technique_common>
+      </optics>
+      <extra>
+        <technique profile="blender">
+          <YF_dofdist>0</YF_dofdist>
+          <shiftx>0</shiftx>
+          <shifty>0</shifty>
+        </technique>
+      </extra>
+    </camera>
+  </library_cameras>
+  <library_images>
+    <image id="entrance2_png" name="entrance2_png">
+      <init_from>entrance2.png</init_from>
+    </image>
+  </library_images>
+  <library_effects>
+    <effect id="palette-effect">
+      <profile_COMMON>
+        <newparam sid="entrance2_png-surface">
+          <surface type="2D">
+            <init_from>entrance2_png</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="entrance2_png-sampler">
+          <sampler2D>
+            <source>entrance2_png-surface</source>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <texture texture="entrance2_png-sampler" texcoord="UVMap"/>
+            </diffuse>
+            <specular>
+              <color sid="specular">0 0 0 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="palette-material" name="palette">
+      <instance_effect url="#palette-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="entrance2-mesh" name="entrance2">
+      <mesh>
+        <source id="entrance2-mesh-positions">
+          <float_array id="entrance2-mesh-positions-array" count="312">-6 15 1.5 -6 0 -1.5 -6 0 1.5 -6 15 -1.5 5 14 1.5 5 0 0.5 5 0 1.5 5 14 0.5 5 14 -0.5 5 0 -1.5 5 0 -0.5 5 14 -1.5 -5 0 1.5 -5 0 0.5 -5 14 1.5 -5 14 0.5 -5 0 -0.5 -5 0 -1.5 -5 14 -0.5 -5 14 -1.5 6 0 1.5 6 0 -1.5 6 15 1.5 6 15 -1.5 -5 0 1.5 -6 15 1.5 -6 0 1.5 -5 14 1.5 5 14 1.5 6 0 1.5 5 0 1.5 6 15 1.5 -3 0 0.5 -5 14 0.5 -5 0 0.5 -3 14 0.5 -1 0 0.5 -1 14 0.5 1 0 0.5 1 14 0.5 3 0 0.5 3 14 0.5 5 0 0.5 5 14 0.5 -5 0 -0.5 -5 14 -0.5 -3 0 -0.5 -3 14 -0.5 -1 0 -0.5 -1 14 -0.5 1 0 -0.5 1 14 -0.5 3 0 -0.5 3 14 -0.5 5 0 -0.5 5 14 -0.5 -6 0 -1.5 -6 15 -1.5 -5 0 -1.5 -5 14 -1.5 5 14 -1.5 5 0 -1.5 6 0 -1.5 6 15 -1.5 -5 0 0.5 -5 0 1.5 -6 0 1.5 5 0 0.5 6 0 1.5 5 0 1.5 -5 0 -0.5 -3 0 0.5 -3 0 -0.5 -1 0 0.5 -1 0 -0.5 1 0 0.5 1 0 -0.5 3 0 0.5 3 0 -0.5 5 0 -0.5 -6 0 -1.5 -5 0 -1.5 5 0 -1.5 6 0 -1.5 -5 14 0.5 5 14 1.5 -5 14 1.5 -3 14 0.5 -1 14 0.5 1 14 0.5 3 14 0.5 5 14 0.5 -5 14 -1.5 -3 14 -0.5 -5 14 -0.5 5 14 -0.5 3 14 -0.5 1 14 -0.5 -1 14 -0.5 5 14 -1.5 -6 15 1.5 6 15 1.5 -6 15 -1.5 6 15 -1.5</float_array>
+          <technique_common>
+            <accessor source="#entrance2-mesh-positions-array" count="104" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="entrance2-mesh-normals">
+          <float_array id="entrance2-mesh-normals-array" count="18">-1 0 0 1 0 0 0 0 1 0 0 -1 0 -1 0 0 1 0</float_array>
+          <technique_common>
+            <accessor source="#entrance2-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="entrance2-mesh-map-0">
+          <float_array id="entrance2-mesh-map-0-array" count="456">0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.267578 0.5 0.267578 0.5 0.267578 0.5 0.267578 0.5 0.267578 0.5 0.267578 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.267578 0.5 0.267578 0.5 0.267578 0.5 0.267578 0.5 0.267578 0.5 0.267578 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.267578 0.5 0.267578 0.5 0.267578 0.5 0.267578 0.5 0.267578 0.5 0.267578 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.267578 0.5 0.267578 0.5 0.267578 0.5 0.267578 0.5 0.267578 0.5 0.267578 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.267578 0.5 0.267578 0.5 0.267578 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.267578 0.5 0.267578 0.5 0.267578 0.5 0.267578 0.5 0.267578 0.5 0.267578 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.267578 0.5 0.267578 0.5 0.267578 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.255859 0.5 0.255859 0.5 0.255859 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5 0.955078 0.5</float_array>
+          <technique_common>
+            <accessor source="#entrance2-mesh-map-0-array" count="228" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="entrance2-mesh-vertices">
+          <input semantic="POSITION" source="#entrance2-mesh-positions"/>
+        </vertices>
+        <polylist material="palette-material" count="76">
+          <input semantic="VERTEX" source="#entrance2-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#entrance2-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#entrance2-mesh-map-0" offset="2" set="0"/>
+          <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 </vcount>
+          <p>0 0 0 1 0 1 2 0 2 3 0 3 1 0 4 0 0 5 4 0 6 5 0 7 6 0 8 7 0 9 5 0 10 4 0 11 8 0 12 9 0 13 10 0 14 11 0 15 9 0 16 8 0 17 12 1 18 13 1 19 14 1 20 14 1 21 13 1 22 15 1 23 16 1 24 17 1 25 18 1 26 18 1 27 17 1 28 19 1 29 20 1 30 21 1 31 22 1 32 22 1 33 21 1 34 23 1 35 24 2 36 25 2 37 26 2 38 27 2 39 25 2 40 24 2 41 28 2 42 25 2 43 27 2 44 29 2 45 28 2 46 30 2 47 31 2 48 25 2 49 28 2 50 31 2 51 28 2 52 29 2 53 32 2 54 33 2 55 34 2 56 35 2 57 33 2 58 32 2 59 36 2 60 35 2 61 32 2 62 37 2 63 35 2 64 36 2 65 38 2 66 37 2 67 36 2 68 39 2 69 37 2 70 38 2 71 40 2 72 39 2 73 38 2 74 41 2 75 39 2 76 40 2 77 42 2 78 41 2 79 40 2 80 43 2 81 41 2 82 42 2 83 44 3 84 45 3 85 46 3 86 46 3 87 45 3 88 47 3 89 46 3 90 47 3 91 48 3 92 48 3 93 47 3 94 49 3 95 48 3 96 49 3 97 50 3 98 50 3 99 49 3 100 51 3 101 50 3 102 51 3 103 52 3 104 52 3 105 51 3 106 53 3 107 52 3 108 53 3 109 54 3 110 54 3 111 53 3 112 55 3 113 56 3 114 57 3 115 58 3 116 58 3 117 57 3 118 59 3 119 59 3 120 57 3 121 60 3 122 61 3 123 60 3 124 62 3 125 60 3 126 57 3 127 63 3 128 62 3 129 60 3 130 63 3 131 64 4 132 65 4 133 66 4 134 67 4 135 68 4 136 69 4 137 70 4 138 64 4 139 66 4 140 70 4 141 71 4 142 64 4 143 72 4 144 73 4 145 71 4 146 72 4 147 71 4 148 70 4 149 74 4 150 75 4 151 73 4 152 74 4 153 73 4 154 72 4 155 76 4 156 77 4 157 75 4 158 76 4 159 75 4 160 74 4 161 78 4 162 67 4 163 77 4 164 78 4 165 77 4 166 76 4 167 79 4 168 68 4 169 67 4 170 79 4 171 67 4 172 78 4 173 80 4 174 70 4 175 66 4 176 81 4 177 70 4 178 80 4 179 82 4 180 68 4 181 79 4 182 83 4 183 68 4 184 82 4 185 84 4 186 85 4 187 86 4 188 87 4 189 85 4 190 84 4 191 88 4 192 85 4 193 87 4 194 89 4 195 85 4 196 88 4 197 90 4 198 85 4 199 89 4 200 91 4 201 85 4 202 90 4 203 92 4 204 93 4 205 94 4 206 92 4 207 95 4 208 96 4 209 92 4 210 96 4 211 97 4 212 92 4 213 97 4 214 98 4 215 92 4 216 98 4 217 93 4 218 99 4 219 95 4 220 92 4 221 100 5 222 101 5 223 102 5 224 102 5 225 101 5 226 103 5 227</p>
+        </polylist>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Camera" name="Camera" type="NODE">
+        <matrix sid="transform">0.6858805 -0.3173701 0.6548619 7.481132 0.7276338 0.3124686 -0.6106656 -6.50764 -0.01081678 0.8953432 0.4452454 5.343665 0 0 0 1</matrix>
+        <instance_camera url="#Camera-camera"/>
+      </node>
+      <node id="entrance2" name="entrance2" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 -1.62921e-7 -1 0 0 1 -1.62921e-7 0 0 0 0 1</matrix>
+        <instance_geometry url="#entrance2-mesh" name="entrance2">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="palette-material" target="#palette-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

@@ -208,7 +208,8 @@
 		"data":{"top":true,"bottom":true,"left":false,"right":true,"back":false,"front":false}
 	},
 	"0,23,2":{
-		"data":{"top":true,"bottom":true,"left":true,"right":false,"back":true,"front":true}
+		"data":{"top":true,"bottom":true,"left":true,"right":false,"back":true,"front":true},
+		"item":"shield"
 	},
 	"1,22,2":{
 		"data":{"top":true,"bottom":true,"left":true,"right":true,"back":false,"front":true}

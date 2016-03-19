@@ -25,6 +25,8 @@
       <a-mixin id="sword-trigger" geometry="primitive: plane; height: 0.7; width: 0.4" position="0 0.2 0.05" rotation="-90 0 0"></a-mixin>
       <a-mixin id="key-model" scale="0.05 0.05 0.05"></a-mixin>
       <a-mixin id="key-trigger" geometry="primitive: plane; height: 0.7; width: 0.4" position="0 0.2 0.05" rotation="-90 0 0"></a-mixin>
+      <a-mixin id="shield-model" scale="0.06 0.06 0.06"></a-mixin>
+      <a-mixin id="shield-trigger" geometry="primitive: plane; height: 0.7; width: 0.6" position="0 0.2 0.05" rotation="-90 0 0"></a-mixin>
       <img id="texture-stone" src="stone_wall.png?v=2">
       <img id="texture-stone2" src="stone_wall2.png?v=1">
       <img id="texture-straw" src="stone_floor_brown.png?v=2">
@@ -43,6 +45,7 @@
           <!-- items -->
           <a-model id="player-sword" visible="false" look-controls="enabled: false" src="models/sword.dae" position="0.7 -0.5 -1.2" rotation="50 0 60" scale="0.08 0.08 0.08"></a-model>
           <a-model id="player-key" visible="false" look-controls="enabled: false" src="models/key.dae" position="0.7 -0.5 -1.2" rotation="50 0 60" scale="0.08 0.08 0.08"></a-model>
+          <a-model id="player-shield" visible="false" look-controls="enabled: false" src="models/shield.dae" position="-0.8 -0.8 -0.7" rotation="90 0 180" scale="0.08 0.08 0.08"></a-model>
         </a-entity>
       </a-entity>
 
@@ -81,8 +84,8 @@
         <a-entity class="bottom" mixin="wall bottom-outside" visible="true" position="4 8 8"></a-entity>
         <a-entity class="back" mixin="wall back-outside" visible="true" position="-4 10 2"></a-entity>
         <a-entity class="back" mixin="wall back-outside" visible="true" position="0 10 2"></a-entity>
-        <a-model src="models/entrance.dae" scale="0.2 0.2 0.2" position="0 8 2.2"></a-model>
-        <a-entity id="entrance-trigger" geometry="primitive: plane; height: 2; width: 2" position="0 9.7 3" rotation="0 0 0" material="transparent: true; opacity: 0"></a-entity>
+        <a-model src="models/entrance2.dae" scale="0.2 0.2 0.2" position="0 8 1.91"></a-model>
+        <a-entity id="entrance-trigger" geometry="primitive: plane; height: 3; width: 2" position="0 9.5 2.2" rotation="0 0 0" material="transparent: true; opacity: 0"></a-entity>
         <a-entity class="back" mixin="wall back-outside" visible="true" position="4 10 2"></a-entity>
         <a-entity class="back" mixin="wall back-outside" visible="true" position="-4 14 2"></a-entity>
         <a-entity class="back" mixin="wall back-outside" visible="true" position="0 14 2"></a-entity>
