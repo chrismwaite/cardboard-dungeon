@@ -6,6 +6,8 @@ Cardboard Dungeon is an experimental virtual reality dungeon crawling experience
 
 Cardboard Dungeon utilises the [A-Frame](https://aframe.io/) VR framework by Mozilla.
 
+You can read as series of devlogs about its creation [here](http://www.bytesizeadventures.com/cardboard-dungeon-devlog-4/).
+
 ---
 
 ## Setup
