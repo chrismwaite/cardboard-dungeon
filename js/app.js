@@ -268,6 +268,10 @@ Inventory.prototype.addItem = function(item) {
 
     $(entity).click(function() {
         var player_item_id = ("#player-" + $(this).attr("id"));
+        //hide all existing items that appear in this same hand
+        var new_item_hand = $(player_item_id).attr("class");
+        $("." + new_item_hand).attr("visible","false");
+
         if($(player_item_id).attr("visible") == false) {
             $(player_item_id).attr("visible","true");
         }
