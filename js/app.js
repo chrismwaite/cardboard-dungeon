@@ -1,6 +1,8 @@
 var containers = {};
 var map = null;
 var inventory = null;
+var tutorial_active = true;
+var tutorial_step_status = {};
 
 document.addEventListener("DOMContentLoaded", function() {
     //load data from map
@@ -23,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
         pickup_elements[i].addEventListener("click", function(){
             inventory.addItem(this);
             this.parentElement.removeChild(this);
+            checkTutorialRules();
             return false;
         });
     }
@@ -33,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("player").setAttribute("position","0 1.8 4");
             document.getElementById("inventory").setAttribute("position","0 0.1 4");
             document.getElementById("tutorial").setAttribute("visible","false");
+            tutorial_active = false;
         }
         return false;
     });
@@ -55,6 +59,7 @@ document.addEventListener("DOMContentLoaded", function() {
             inventory.active = true;
             setTimeout(renderInventory, 1500);
         }
+        checkTutorialRules();
         return false;
     });
 });
@@ -109,6 +114,61 @@ function setAttributeForClass(parent, class_name, attribute, value) {
     var elements = parent.getElementsByClassName(class_name);
     for(var i = 0; i < elements.length; i++) {
         elements[i].setAttribute(attribute, value);
+    }
+}
+
+function checkTutorialRules() {
+    //if the tutorial is active
+    if(tutorial_active) {
+        //finding the key
+        if(!document.querySelector("#tutorial #key")) {
+            tutorial_step_status["tut-pickup-key"] = false;
+            tutorial_step_status["tut-find-key"] = false;
+        }
+
+        //opening the inventory
+        if(inventory.active) {
+            tutorial_step_status["tut-compass"] = false;
+            tutorial_step_status["tut-open-inventory"] = false;
+            tutorial_step_status["tut-close-inventory"] = true;
+
+            //holding the key
+            if(document.querySelector("#inventory #key")) {
+                tutorial_step_status["tut-take-key"] = true;
+            }
+            else {
+                tutorial_step_status["tut-take-key"] = false;
+            }
+
+            //putting the key back
+            if(document.getElementById("player-key").getAttribute("visible") == true) {
+                tutorial_step_status["tut-put-back-key"] = true;
+                tutorial_step_status["tut-take-key"] = false;
+            }
+            else {
+                tutorial_step_status["tut-put-back-key"] = false;
+            }
+        }
+        else {
+            tutorial_step_status["tut-compass"] = true;
+            tutorial_step_status["tut-open-inventory"] = true;
+            tutorial_step_status["tut-close-inventory"] = false;
+            tutorial_step_status["tut-take-key"] = false;
+            tutorial_step_status["tut-put-back-key"] = false;
+        }
+
+        //using the key
+        if(document.getElementById("player-key").getAttribute("visible") == true) {
+            tutorial_step_status["tut-use-key"] = true;
+        }
+        else {
+            tutorial_step_status["tut-use-key"] = false;
+        }
+
+        //render the step status
+        for(var key in tutorial_step_status) {
+            document.getElementById(key).setAttribute("visible",tutorial_step_status[key]);
+        }
     }
 }
 
@@ -290,6 +350,8 @@ Inventory.prototype.addItem = function(item) {
         else {
             document.getElementById(player_item_id).setAttribute("visible","false");
         }
+
+        checkTutorialRules();
     });
 }
 

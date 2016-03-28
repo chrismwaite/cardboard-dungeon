@@ -31,6 +31,14 @@
       <img id="texture-straw" src="textures/stone_floor_brown.png?v=3">
       <img id="texture-stone-roof" src="textures/stone_ceiling.png?v=3">
       <img id="texture-grass" src="textures/grass.png?v=3">
+      <img id="tutorial-1" src="textures/tutorial_1.png?v=1">
+      <img id="tutorial-2" src="textures/tutorial_2.png?v=1">
+      <img id="tutorial-3" src="textures/tutorial_3.png?v=1">
+      <img id="tutorial-4" src="textures/tutorial_4.png?v=1">
+      <img id="tutorial-5" src="textures/tutorial_5.png?v=1">
+      <img id="tutorial-6" src="textures/tutorial_6.png?v=1">
+      <img id="tutorial-7" src="textures/tutorial_7.png?v=1">
+      <img id="tutorial-8" src="textures/tutorial_8.png?v=1">
     </a-assets>
     <a-scene>
       <!-- player -->
@@ -89,6 +97,23 @@
         <a-entity class="back" mixin="wall back-outside" visible="true" position="-4 14 2"></a-entity>
         <a-entity class="back" mixin="wall back-outside" visible="true" position="0 14 2"></a-entity>
         <a-entity class="back" mixin="wall back-outside" visible="true" position="4 14 2"></a-entity>
+
+        <!-- Tutorial messages -->
+        <a-entity id="tut-find-key" geometry="primitive: plane; height: 1.5; width: 2" position="-2 9.8 2.4" material="src: #tutorial-1; transparent: true; opacity: 2"></a-entity>
+
+        <a-entity id="tut-pickup-key" geometry="primitive: plane; height: 0.75; width: 1" position="-0.7 8.1 5.9" rotation="-90 180 0" material="src: #tutorial-2; transparent: true; opacity: 2"></a-entity>
+
+        <a-entity id="tut-compass" geometry="primitive: plane; height: 0.75; width: 1" position="-1.1 8.1 4" rotation="-90 0 0" material="src: #tutorial-3; transparent: true; opacity: 2"></a-entity>
+
+        <a-entity id="tut-open-inventory" geometry="primitive: plane; height: 0.75; width: 1" position="1.1 8.1 4" rotation="-90 0 0" material="src: #tutorial-4; transparent: true; opacity: 2"></a-entity>
+
+        <a-entity id="tut-close-inventory" visible="false" geometry="primitive: plane; height: 0.75; width: 1" position="1.4 8.1 4" rotation="-90 0 0" material="src: #tutorial-5; transparent: true; opacity: 2"></a-entity>
+
+        <a-entity id="tut-take-key" visible="false" geometry="primitive: plane; height: 0.75; width: 1" position="0.9 8.1 3.1" rotation="-90 0 0" material="src: #tutorial-6; transparent: true; opacity: 2"></a-entity>
+
+        <a-entity id="tut-put-back-key" visible="false" geometry="primitive: plane; height: 0.75; width: 1" position="0.9 8.1 3.1" rotation="-90 0 0" material="src: #tutorial-7; transparent: true; opacity: 2"></a-entity>
+
+        <a-entity id="tut-use-key" visible="false" geometry="primitive: plane; height: 1.5; width: 2" position="-2 9.8 2.4" material="src: #tutorial-8; transparent: true; opacity: 2"></a-entity>
 
         <!-- items -->
         <a-entity id="key" class="pickup" position="0 8 6">
