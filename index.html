@@ -2,166 +2,256 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Cardboard Dungeon</title>
-    <meta name="description" content="Cardboard Dungeon">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script src="js/aframe.js"></script>
-    <script src="js/jquery-2.2.0.min.js"></script>
-    <script src="js/app.js?v=8"></script>
+    <title>Cardboard Dungeon - A Virtual Reality Experience</title>
+    <meta name="description" content="Cardboard Dungeon is a Virtual Reality experience for Google Cardboard. It utilises Mozilla's A-Frame WebVR framework.">
+    <meta name="author" content="Christopher Waite">
+    <script src="js/aframe-prod.js"></script>
+    <script src="js/app.js?v=1.0.1"></script>
   </head>
   <body>
     <a-assets>
       <a-mixin id="wall" geometry="primitive: plane; height: 4; width: 4"></a-mixin>
-      <a-mixin id="top" rotation="90 0 0" material="src: #texture-stone-roof; repeat: 4 4"></a-mixin>
-      <a-mixin id="bottom" rotation="-90 0 0" material="src: #texture-straw; repeat: 4 4"></a-mixin>
+      <a-mixin id="top" rotation="90 0 0" material="src: #texture-stone-roof; repeat:2 2"></a-mixin>
+      <a-mixin id="bottom" rotation="-90 0 0" material="src: #texture-straw; repeat: 2 2"></a-mixin>
+      <a-mixin id="bottom-outside" rotation="-90 0 0" material="src: #texture-grass; repeat: 2 2"></a-mixin>
       <a-mixin id="right" rotation="0 -90 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
       <a-mixin id="left" rotation="0 90 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
       <a-mixin id="back" rotation="0 0 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
+      <a-mixin id="back-outside" rotation="0 0 0" material="src: #texture-stone2; repeat: 2 2"></a-mixin>
       <a-mixin id="front" rotation="180 0 0" material="src: #texture-stone; repeat: 2 2"></a-mixin>
-      <a-mixin id="move" geometry="primitive: plane; height: 0.7; width: 0.7" material="color: #FFFFFF; opacity: 0.5" rotation="-90 0 0"></a-mixin>
-      <img id="texture-stone" src="stone.jpg?v=3">
-      <img id="texture-straw" src="straw.jpg?v=3">
-      <img id="texture-stone-roof" src="stone_roof.jpg?v=3">
+      <a-mixin id="move" geometry="primitive: sphere; radius: 0.25;" material="color: #0000ff; opacity: 1"></a-mixin>
+      <a-mixin id="sword-model" scale="0.05 0.05 0.05"></a-mixin>
+      <a-mixin id="sword-trigger" geometry="primitive: plane; height: 0.7; width: 0.4" position="0 0.2 0.05" rotation="-90 0 0"></a-mixin>
+      <a-mixin id="key-model" scale="0.05 0.05 0.05"></a-mixin>
+      <a-mixin id="key-trigger" geometry="primitive: plane; height: 0.7; width: 0.4" position="0 0.2 0.05" rotation="-90 0 0"></a-mixin>
+      <a-mixin id="shield-model" scale="0.06 0.06 0.06"></a-mixin>
+      <a-mixin id="shield-trigger" geometry="primitive: plane; height: 0.7; width: 0.6" position="0 0.2 0.05" rotation="-90 0 0"></a-mixin>
+      <img id="texture-stone" src="textures/stone_wall.png?v=3">
+      <img id="texture-stone2" src="textures/stone_wall2.png?v=3">
+      <img id="texture-straw" src="textures/stone_floor_brown.png?v=3">
+      <img id="texture-stone-roof" src="textures/stone_ceiling.png?v=3">
+      <img id="texture-grass" src="textures/grass.png?v=3">
+      <img id="tutorial-1" src="textures/tutorial_1.png?v=1">
+      <img id="tutorial-2" src="textures/tutorial_2.png?v=1">
+      <img id="tutorial-3" src="textures/tutorial_3.png?v=1">
+      <img id="tutorial-4" src="textures/tutorial_4.png?v=1">
+      <img id="tutorial-5" src="textures/tutorial_5.png?v=1">
+      <img id="tutorial-6" src="textures/tutorial_6.png?v=1">
+      <img id="tutorial-7" src="textures/tutorial_7.png?v=1">
+      <img id="tutorial-8" src="textures/tutorial_8.png?v=1">
     </a-assets>
     <a-scene>
-      <a-entity position="0 1.8 4">
+      <!-- player -->
+      <a-entity id="player" position="0 9.8 4">
+        <a-entity light="type: point; intensity: 1.5; distance: 17; decay: 4" position="0 0 0"></a-entity>
         <a-entity camera look-controls wasd-controls="enabled: false">
-          <a-entity id="cursor" position="0 0 -1" geometry="primitive: ring; radiusOuter: 0.016; radiusInner: 0.01" material="color: #FFF;" cursor="fuse: true">
+          <a-entity id="cursor" position="0 0 -1" geometry="primitive: ring; radiusOuter: 0.016; radiusInner: 0.01" material="color: #FFF;" cursor="fuse: true; maxDistance: 8">
             <a-animation begin="fusing" easing="ease" attribute="scale" fill="none" from="1 1 1" to="0 0 0" dur="1500"></a-animation>
           </a-entity>
+
+          <!-- items -->
+          <a-model id="player-sword" class="right-hand" visible="false" look-controls="enabled: false" src="models/sword.dae" position="0.7 -0.5 -1.2" rotation="50 0 60" scale="0.08 0.08 0.08"></a-model>
+          <a-model id="player-key" class="right-hand" visible="false" look-controls="enabled: false" src="models/key.dae" position="0.7 -0.5 -1.2" rotation="50 0 -120" scale="0.08 0.08 0.08"></a-model>
+          <a-model id="player-shield" class="left-hand" visible="false" look-controls="enabled: false" src="models/shield.dae" position="-0.8 -0.8 -0.7" rotation="90 0 180" scale="0.08 0.08 0.08"></a-model>
         </a-entity>
       </a-entity>
 
-      <a-entity look-controls geometry="primitive: box; width: 0.3; height: 0.3; depth: 0.05" material="color: #cccc00" position="0 0.5 4"></a-entity>
-      <a-entity geometry="primitive: box; width: 0.2; height: 0.2; depth: 0.05" material="color: white" position="0 0.5 4" rotation="0 90 0">
-        <a-entity geometry="primitive: box; width: 0.05; height: 0.2; depth: 0.05" material="color: red" position="0.08 0.01 0"></a-entity>
+      <!-- inventory -->
+      <a-entity id="inventory" position="0 8.1 4">
+        <a-entity id="inv-slot-1" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0 0.01 -0.25" material="color: #FFFFFF; transparent: true; opacity: 0.6">
+          <a-animation begin="animate-inventory" easing="ease" attribute="position" fill="forwards" from="0 0.01 -0.25" to="0 0.01 -0.5" dur="1500"></a-animation>
+          <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="0 0.01 -0.5" to="0 0.01 -0.25" dur="1500"></a-animation>
+        </a-entity>
+        <a-entity id="inv-slot-2" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0 0.01 0.25" material="color: #FFFFFF; transparent: true; opacity: 0.6">
+          <a-animation begin="animate-inventory" easing="ease" attribute="position" fill="forwards" from="0 0.01 0.25" to="0 0.01 0.5" dur="1500"></a-animation>
+          <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="0 0.01 0.5" to="0 0.01 0.25" dur="1500"></a-animation>
+        </a-entity>
+        <a-entity id="inv-slot-3" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="-0.25 0 0" material="color: #FFFFFF; transparent: true; opacity: 0.6">
+          <a-animation begin="animate-inventory" easing="ease" attribute="position" fill="forwards" from="-0.25 0 0" to="-0.5 0 0" dur="1500"></a-animation>
+          <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="-0.5 0 0" to="-0.25 0 0" dur="1500"></a-animation>
+        </a-entity>
+        <a-entity id="inv-slot-4" class="inv-slot" geometry="primitive: plane; height: 0.5; width: 0.5" rotation="-90 0 0" position="0.25 0 0" material="color: #FFFFFF; transparent: true; opacity: 0.6">
+          <a-animation begin="animate-inventory" easing="ease" attribute="position" fill="forwards" from="0.25 0 0" to="0.5 0 0" dur="1500"></a-animation>
+          <a-animation begin="animate-inventory-close" easing="ease" attribute="position" fill="forwards" from="0.5 0 0" to="0.25 0 0" dur="1500"></a-animation>
+        </a-entity>
+        <a-entity id="compass">
+          <a-entity look-controls geometry="primitive: box; height: 0.3; width: 0.3; depth: 0.05" material="color: #FCB514" position="0 0.1 0"></a-entity>
+          <a-model src="models/compass_needle.dae" scale="0.02 0.02 0.02" position="0 0.2 0"></a-model>
+        </a-entity>
       </a-entity>
 
-      <a-entity light="type: point; intensity: 1.5; distance: 17; decay: 4" position="0 1.8 4"></a-entity>
+      <!-- starting/tutorial area -->
+      <a-entity id="tutorial">
+        <a-entity light="type: point; intensity: 1.5; distance: 17; decay: 4" position="0 0 0"></a-entity>
+        <a-entity class="bottom" mixin="wall bottom-outside" visible="true" position="-4 8 4"></a-entity>
+        <a-entity class="bottom" mixin="wall bottom-outside" visible="true" position="0 8 4"></a-entity>
+        <a-entity class="bottom" mixin="wall bottom-outside" visible="true" position="4 8 4"></a-entity>
+        <a-entity class="bottom" mixin="wall bottom-outside" visible="true" position="-4 8 8"></a-entity>
+        <a-entity class="bottom" mixin="wall bottom-outside" visible="true" position="0 8 8"></a-entity>
+        <a-entity class="bottom" mixin="wall bottom-outside" visible="true" position="4 8 8"></a-entity>
+        <a-entity class="back" mixin="wall back-outside" visible="true" position="-4 10 2"></a-entity>
+        <a-entity class="back" mixin="wall back-outside" visible="true" position="0 10 2"></a-entity>
+        <a-model src="models/entrance2.dae" scale="0.2 0.2 0.2" position="0 8 1.91"></a-model>
+        <a-entity id="entrance-trigger" geometry="primitive: plane; height: 3; width: 2" position="0 9.5 2.2" rotation="0 0 0" material="transparent: true; opacity: 0"></a-entity>
+        <a-entity class="back" mixin="wall back-outside" visible="true" position="4 10 2"></a-entity>
+        <a-entity class="back" mixin="wall back-outside" visible="true" position="-4 14 2"></a-entity>
+        <a-entity class="back" mixin="wall back-outside" visible="true" position="0 14 2"></a-entity>
+        <a-entity class="back" mixin="wall back-outside" visible="true" position="4 14 2"></a-entity>
 
+        <!-- Tutorial messages -->
+        <a-entity id="tut-find-key" geometry="primitive: plane; height: 1.5; width: 2" position="-2 9.8 2.4" material="src: #tutorial-1; transparent: true; opacity: 2"></a-entity>
+
+        <a-entity id="tut-pickup-key" geometry="primitive: plane; height: 0.75; width: 1" position="-0.7 8.1 5.9" rotation="-90 180 0" material="src: #tutorial-2; transparent: true; opacity: 2"></a-entity>
+
+        <a-entity id="tut-compass" geometry="primitive: plane; height: 0.75; width: 1" position="-1.1 8.1 4" rotation="-90 0 0" material="src: #tutorial-3; transparent: true; opacity: 2"></a-entity>
+
+        <a-entity id="tut-open-inventory" geometry="primitive: plane; height: 0.75; width: 1" position="1.1 8.1 4" rotation="-90 0 0" material="src: #tutorial-4; transparent: true; opacity: 2"></a-entity>
+
+        <a-entity id="tut-close-inventory" visible="false" geometry="primitive: plane; height: 0.75; width: 1" position="1.4 8.1 4" rotation="-90 0 0" material="src: #tutorial-5; transparent: true; opacity: 2"></a-entity>
+
+        <a-entity id="tut-take-key" visible="false" geometry="primitive: plane; height: 0.75; width: 1" position="0.9 8.1 3.1" rotation="-90 0 0" material="src: #tutorial-6; transparent: true; opacity: 2"></a-entity>
+
+        <a-entity id="tut-put-back-key" visible="false" geometry="primitive: plane; height: 0.75; width: 1" position="0.9 8.1 3.1" rotation="-90 0 0" material="src: #tutorial-7; transparent: true; opacity: 2"></a-entity>
+
+        <a-entity id="tut-use-key" visible="false" geometry="primitive: plane; height: 1.5; width: 2" position="-2 9.8 2.4" material="src: #tutorial-8; transparent: true; opacity: 2"></a-entity>
+
+        <!-- items -->
+        <a-entity id="key" class="pickup" position="0 8 6">
+          <a-model src="models/key.dae" position="0 0 0" mixin="key-model"></a-model>
+          <a-entity mixin="key-trigger" material="transparent: true; opacity: 0"></a-entity>
+        </a-entity>
+      </a-entity>
+
+      <!-- ground floor -->
       <a-entity id="north-west">
-        <a-entity class="top" mixin="wall top" position="-4 4 0" visible="false"></a-entity>
-        <a-entity class="bottom" mixin="wall bottom" position="-4 0 0" visible="true"></a-entity>
-        <a-entity class="left" mixin="wall left" position="-6 2 0" visible="false"></a-entity>
-        <a-entity class="right" mixin="wall right" position="-2 2 0" visible="false"></a-entity>
-        <a-entity class="back" mixin="wall back" position="-4 2 -2" visible="false"></a-entity>
-        <a-entity class="front" mixin="wall front" position="-4 2 2" visible="false"></a-entity>
       </a-entity>
 
       <a-entity id="north-north">
-        <a-entity class="top" mixin="wall top" position="0 4 -4" visible="false"></a-entity>
-        <a-entity class="bottom" mixin="wall bottom" position="0 0 -4" visible="true"></a-entity>
-        <a-entity class="left" mixin="wall left" position="-2 2 -4" visible="false"></a-entity>
-        <a-entity class="right" mixin="wall right" position="2 2 -4" visible="false"></a-entity>
-        <a-entity class="back" mixin="wall back" position="0 2 -6" visible="false"></a-entity>
-        <a-entity class="front" mixin="wall front" position="0 2 -2" visible="false"></a-entity>
       </a-entity>
 
       <a-entity id="north">
-        <a-entity class="top" mixin="wall top" position="0 4 0" visible="false"></a-entity>
-        <a-entity class="bottom" mixin="wall bottom" position="0 0 0" visible="true"></a-entity>
-        <a-entity class="left" mixin="wall left" position="-2 2 0" visible="false"></a-entity>
-        <a-entity class="right" mixin="wall right" position="2 2 0" visible="false"></a-entity>
-        <a-entity class="back" mixin="wall back" position="0 2 -2" visible="false"></a-entity>
-        <a-entity class="front" mixin="wall front" position="0 2 2" visible="false"></a-entity>
-
-        <a-entity class="move" mixin="move" position="0 0.1 0"></a-entity>
+        <a-entity class="move" mixin="move" position="0 3 0"></a-entity>
       </a-entity>
 
       <a-entity id="north-east">
-        <a-entity class="top" mixin="wall top" position="4 4 0" visible="false"></a-entity>
-        <a-entity class="bottom" mixin="wall bottom" position="4 0 0" visible="true"></a-entity>
-        <a-entity class="left" mixin="wall left" position="2 2 0" visible="false"></a-entity>
-        <a-entity class="right" mixin="wall right" position="6 2 0" visible="false"></a-entity>
-        <a-entity class="back" mixin="wall back" position="4 2 -2" visible="false"></a-entity>
-        <a-entity class="front" mixin="wall front" position="4 2 2" visible="false"></a-entity>
       </a-entity>
 
       <a-entity id="west-west">
-        <a-entity class="top" mixin="wall top" position="-8 4 4" visible="false"></a-entity>
-        <a-entity class="bottom" mixin="wall bottom" position="-8 0 4" visible="true"></a-entity>
-        <a-entity class="left" mixin="wall left" position="-10 2 4" visible="false"></a-entity>
-        <a-entity class="right" mixin="wall right" position="-6 2 4" visible="false"></a-entity>
-        <a-entity class="back" mixin="wall back" position="-8 2 2" visible="false"></a-entity>
-        <a-entity class="front" mixin="wall front" position="-8 2 6" visible="false"></a-entity>
       </a-entity>
 
       <a-entity id="west">
-        <a-entity class="top" mixin="wall top" position="-4 4 4" visible="false"></a-entity>
-        <a-entity class="bottom" mixin="wall bottom" position="-4 0 4" visible="true"></a-entity>
-        <a-entity class="left" mixin="wall left" position="-6 2 4" visible="false"></a-entity>
-        <a-entity class="right" mixin="wall right" position="-2 2 4" visible="false"></a-entity>
-        <a-entity class="back" mixin="wall back" position="-4 2 2" visible="false"></a-entity>
-        <a-entity class="front" mixin="wall front" position="-4 2 6" visible="false"></a-entity>
-
-        <a-entity class="move" mixin="move" position="-4 0.1 4"></a-entity>
+        <a-entity class="move" mixin="move" position="-4 3 4"></a-entity>
       </a-entity>
 
       <a-entity id="center">
-        <a-entity class="top" mixin="wall top" position="0 4 4" visible="false"></a-entity>
-        <a-entity class="bottom" mixin="wall bottom" position="0 0 4" visible="true"></a-entity>
-        <a-entity class="left" mixin="wall left" position="-2 2 4" visible="false"></a-entity>
-        <a-entity class="right" mixin="wall right" position="2 2 4" visible="false"></a-entity>
-        <a-entity class="back" mixin="wall back" position="0 2 2" visible="false"></a-entity>
-        <a-entity class="front" mixin="wall front" position="0 2 6" visible="false"></a-entity>
       </a-entity>
 
       <a-entity id="east-east">
-        <a-entity class="top" mixin="wall top" position="8 4 4" visible="false"></a-entity>
-        <a-entity class="bottom" mixin="wall bottom" position="8 0 4" visible="true"></a-entity>
-        <a-entity class="left" mixin="wall left" position="6 2 4" visible="false"></a-entity>
-        <a-entity class="right" mixin="wall right" position="10 2 4" visible="false"></a-entity>
-        <a-entity class="back" mixin="wall back" position="8 2 2" visible="false"></a-entity>
-        <a-entity class="front" mixin="wall front" position="8 2 6" visible="false"></a-entity>
       </a-entity>
 
       <a-entity id="east">
-        <a-entity class="top" mixin="wall top" position="4 4 4" visible="false"></a-entity>
-        <a-entity class="bottom" mixin="wall bottom" position="4 0 4" visible="true"></a-entity>
-        <a-entity class="left" mixin="wall left" position="2 2 4" visible="false"></a-entity>
-        <a-entity class="right" mixin="wall right" position="6 2 4" visible="false"></a-entity>
-        <a-entity class="back" mixin="wall back" position="4 2 2" visible="false"></a-entity>
-        <a-entity class="front" mixin="wall front" position="4 2 6" visible="false"></a-entity>
-
-        <a-entity class="move" mixin="move" position="4 0.1 4"></a-entity>
+        <a-entity class="move" mixin="move" position="4 3 4"></a-entity>
       </a-entity>
 
       <a-entity id="south-west">
-        <a-entity class="top" mixin="wall top" position="-4 4 8" visible="false"></a-entity>
-        <a-entity class="bottom" mixin="wall bottom" position="-4 0 8" visible="true"></a-entity>
-        <a-entity class="left" mixin="wall left" position="-6 2 8" visible="false"></a-entity>
-        <a-entity class="right" mixin="wall right" position="-2 2 8" visible="false"></a-entity>
-        <a-entity class="back" mixin="wall back" position="-4 2 6" visible="false"></a-entity>
-        <a-entity class="front" mixin="wall front" position="-4 2 10" visible="false"></a-entity>
       </a-entity>
 
       <a-entity id="south-south">
-        <a-entity class="top" mixin="wall top" position="0 4 12" visible="false"></a-entity>
-        <a-entity class="bottom" mixin="wall bottom" position="0 0 12" visible="true"></a-entity>
-        <a-entity class="left" mixin="wall left" position="-2 2 12" visible="false"></a-entity>
-        <a-entity class="right" mixin="wall right" position="2 2 12" visible="false"></a-entity>
-        <a-entity class="back" mixin="wall back" position="0 2 10" visible="false"></a-entity>
-        <a-entity class="front" mixin="wall front" position="0 2 14" visible="false"></a-entity>
       </a-entity>
 
       <a-entity id="south">
-        <a-entity class="top" mixin="wall top" position="0 4 8" visible="false"></a-entity>
-        <a-entity class="bottom" mixin="wall bottom" position="0 0 8" visible="true"></a-entity>
-        <a-entity class="left" mixin="wall left" position="-2 2 8" visible="false"></a-entity>
-        <a-entity class="right" mixin="wall right" position="2 2 8" visible="false"></a-entity>
-        <a-entity class="back" mixin="wall back" position="0 2 6" visible="false"></a-entity>
-        <a-entity class="front" mixin="wall front" position="0 2 10" visible="false"></a-entity>
-
-        <a-entity class="move" mixin="move" position="0 0.1 8"></a-entity>
+        <a-entity class="move" mixin="move" position="0 3 8"></a-entity>
       </a-entity>
 
       <a-entity id="south-east">
-        <a-entity class="top" mixin="wall top" position="4 4 8" visible="false"></a-entity>
-        <a-entity class="bottom" mixin="wall bottom" position="4 0 8" visible="true"></a-entity>
-        <a-entity class="left" mixin="wall left" position="2 2 8" visible="false"></a-entity>
-        <a-entity class="right" mixin="wall right" position="6 2 8" visible="false"></a-entity>
-        <a-entity class="back" mixin="wall back" position="4 2 6" visible="false"></a-entity>
-        <a-entity class="front" mixin="wall front" position="4 2 10" visible="false"></a-entity>
+      </a-entity>
+
+      <!-- bottom floor -->
+      <a-entity id="bottom-north-west">
+      </a-entity>
+
+      <a-entity id="bottom-north-north">
+      </a-entity>
+
+      <a-entity id="bottom-north">
+        <a-entity class="move" mixin="move" position="0 -1 0"></a-entity>
+      </a-entity>
+
+      <a-entity id="bottom-north-east">
+      </a-entity>
+
+      <a-entity id="bottom-west-west">
+      </a-entity>
+
+      <a-entity id="bottom-west">
+        <a-entity class="move" mixin="move" position="-4 -1 4"></a-entity>
+      </a-entity>
+
+      <a-entity id="bottom-center">
+      </a-entity>
+
+      <a-entity id="bottom-east-east">
+      </a-entity>
+
+      <a-entity id="bottom-east">
+        <a-entity class="move" mixin="move" position="4 -1 4"></a-entity>
+      </a-entity>
+
+      <a-entity id="bottom-south-west">
+      </a-entity>
+
+      <a-entity id="bottom-south-south">
+      </a-entity>
+
+      <a-entity id="bottom-south">
+        <a-entity class="move" mixin="move" position="0 -1 8"></a-entity>
+      </a-entity>
+
+      <a-entity id="bottom-south-east">
+      </a-entity>
+
+      <!-- top floor -->
+      <a-entity id="top-north-west">
+      </a-entity>
+
+      <a-entity id="top-north-north">
+      </a-entity>
+
+      <a-entity id="top-north">
+        <a-entity class="move" mixin="move" position="0 7 0"></a-entity>
+      </a-entity>
+
+      <a-entity id="top-north-east">
+      </a-entity>
+
+      <a-entity id="top-west-west">
+      </a-entity>
+
+      <a-entity id="top-west">
+        <a-entity class="move" mixin="move" position="-4 7 4"></a-entity>
+      </a-entity>
+
+      <a-entity id="top-center">
+      </a-entity>
+
+      <a-entity id="top-east-east">
+      </a-entity>
+
+      <a-entity id="top-east">
+        <a-entity class="move" mixin="move" position="4 7 4"></a-entity>
+      </a-entity>
+
+      <a-entity id="top-south-west">
+      </a-entity>
+
+      <a-entity id="top-south-south">
+      </a-entity>
+
+      <a-entity id="top-south">
+        <a-entity class="move" mixin="move" position="0 7 8"></a-entity>
+      </a-entity>
+
+      <a-entity id="top-south-east">
       </a-entity>
 
       <a-sky color="#000"></a-sky>
