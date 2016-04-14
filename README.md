@@ -8,6 +8,8 @@ Cardboard Dungeon utilises the [A-Frame](https://aframe.io/) VR framework by Moz
 
 You can read a series of devlogs about its creation [here](http://www.bytesizeadventures.com/cardboard-dungeon-devlog-4/).
 
+The VR team at Mozilla asked if I'd like to write a case study for their Mozilla Hacks blog. [You can read that here](https://hacks.mozilla.org/2016/03/building-cardboard-dungeon-with-a-frame/).
+
 ---
 
 ## Setup
