@@ -23,13 +23,23 @@ The VR team at Mozilla asked if I'd like to write a case study for their Mozilla
 
 All interaction in Cardboard Dungeon utilises the "Gaze" interaction method. Looking at an object for a short period of time will trigger an interaction if one is available. The cursor will shrink to indicate that a "Gaze" has been triggered.
 
-Gaze at the blue spheres to move around the dungeon. The spheres will telport you to their location.
+#### Movement
 
-At your feet is a compass and an inventory. Gazing at the compass will open and close the inventory. Any items you have collected will appear in the slots in your inventory (only visible when the inventory is open). You can wield items by gazing at the item in your inventory. Gazing again will remove the item from your hand.
+Gaze at the blue spheres to move around the dungeon. The spheres will teleport you to their location.
+
+#### Inventory
+
+At your feet is a compass and your inventory. Gazing at the compass will open and close the inventory. Any items you have collected will appear in the slots within your inventory (only visible when the inventory is open).
+
+#### Interaction
 
 Gazing at items will pick them up and place them in your inventory.
 
-Gazing at some objects with an item in your hand will trigger an interaction.
+You can wield items by gazing at the item in your inventory. Gazing at the item in your inventory again will remove the item from your hand.
+
+Gazing at some objects in the world, whilst an item is in your hand, will trigger an interaction.
+
+## Play
 
 [Play it on Github IO Here](http://chrismwaite.github.io/cardboard-dungeon/)
 
