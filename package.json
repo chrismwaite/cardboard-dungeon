@@ -1,0 +1,29 @@
+{
+  "name": "cardboard_dungeon",
+  "version": "1.0.0",
+  "description": "[Play it on Github IO Here](http://chrismwaite.github.io/cardboard-dungeon/)",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server",
+    "build": "webpack && cp -R src/models dist && cp -R src/textures dist && cp src/index.html dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrismwaite/cardboard-dungeon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chrismwaite/cardboard-dungeon/issues"
+  },
+  "homepage": "https://github.com/chrismwaite/cardboard-dungeon#readme",
+  "dependencies": {
+    "aframe": "^0.9.2"
+  },
+  "devDependencies": {
+    "webpack": "^4.35.2",
+    "webpack-cli": "^3.3.5",
+    "webpack-dev-server": "^3.7.2"
+  }
+}
