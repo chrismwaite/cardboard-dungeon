@@ -1,5 +1,6 @@
 //require('aframe');
 require('./components/room.js');
+require('./components/level.js');
 
 //alert("test");
 
