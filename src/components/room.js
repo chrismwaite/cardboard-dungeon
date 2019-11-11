@@ -6,6 +6,7 @@ AFRAME.registerComponent('room', {
     westWall: {type: 'boolean', default: true},
   },
   init: function() {
+    console.log('room component');
     let el = this.el;
 
     //store the wall elements

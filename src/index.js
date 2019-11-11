@@ -1,6 +1,9 @@
-//require('aframe');
+//require('aframe'); //now a static include on index.html
 require('./components/room.js');
 require('./components/level.js');
+
+
+
 
 //alert("test");
 
